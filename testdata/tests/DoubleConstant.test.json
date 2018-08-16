@@ -1,0 +1,56 @@
+{
+  ".1": {
+    "statements": [
+      {
+        "type": "DoubleConstant",
+        "value": 0.1
+      }
+    ],
+    "type": "Statements"
+  },
+  "0.12": {
+    "statements": [
+      {
+        "type": "DoubleConstant",
+        "value": 0.12
+      }
+    ],
+    "type": "Statements"
+  },
+  "1.": {
+    "statements": [
+      {
+        "type": "DoubleConstant",
+        "value": 1.0
+      }
+    ],
+    "type": "Statements"
+  },
+  "1.1": {
+    "statements": [
+      {
+        "type": "DoubleConstant",
+        "value": 1.1
+      }
+    ],
+    "type": "Statements"
+  },
+  "12": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 12
+      }
+    ],
+    "type": "Statements"
+  },
+  "12.34": {
+    "statements": [
+      {
+        "type": "DoubleConstant",
+        "value": 12.34
+      }
+    ],
+    "type": "Statements"
+  }
+}

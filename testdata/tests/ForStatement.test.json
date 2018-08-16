@@ -1,0 +1,81 @@
+{
+  "for": null,
+  "for(": null,
+  "for(0 0 0)0": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "init-statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "iteration-statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "ForStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "for(0;": null,
+  "for(0;0;": null,
+  "for(0;0;0": null,
+  "for(0;0;0)": null,
+  "for(0;0;0)0": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "init-statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "iteration-statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "ForStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "for(0;0;0;;)0": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "init-statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "iteration-statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "ForStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "for(;;)0": null
+}

@@ -1,0 +1,10 @@
+{
+  "break": {
+    "statements": [
+      {
+        "type": "BreakStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "a(": null,
+  "a()": {
+    "statements": [
+      {
+        "arguments": [],
+        "name": "a",
+        "type": "FunctionCall"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a(,b)": null,
+  "a(b c)": null,
+  "a(b)": {
+    "statements": [
+      {
+        "arguments": [
+          {
+            "name": "b",
+            "type": "Variable"
+          }
+        ],
+        "name": "a",
+        "type": "FunctionCall"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a(b,)": null,
+  "a(b,c)": {
+    "statements": [
+      {
+        "arguments": [
+          {
+            "name": "b",
+            "type": "Variable"
+          },
+          {
+            "name": "c",
+            "type": "Variable"
+          }
+        ],
+        "name": "a",
+        "type": "FunctionCall"
+      }
+    ],
+    "type": "Statements"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "continue": {
+    "statements": [
+      {
+        "type": "ContinueStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

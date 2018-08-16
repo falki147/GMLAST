@@ -1,0 +1,153 @@
+{
+  "a[": null,
+  "a[#": null,
+  "a[#b": null,
+  "a[#b,": null,
+  "a[#b,c]": {
+    "statements": [
+      {
+        "array": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "array-type": "Grid",
+        "index1": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "index2": {
+          "name": "c",
+          "type": "Variable"
+        },
+        "type": "ArrayOperator"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a[#b]": null,
+  "a[?": null,
+  "a[?b": null,
+  "a[?b,": null,
+  "a[?b,c]": null,
+  "a[?b]": {
+    "statements": [
+      {
+        "array": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "array-type": "Map",
+        "index1": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "ArrayOperator"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a[@": null,
+  "a[@b": null,
+  "a[@b,": null,
+  "a[@b,c,d]": null,
+  "a[@b,c]": {
+    "statements": [
+      {
+        "array": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "array-type": "Reference",
+        "index1": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "index2": {
+          "name": "c",
+          "type": "Variable"
+        },
+        "type": "ArrayOperator"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a[@b]": {
+    "statements": [
+      {
+        "array": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "array-type": "Reference",
+        "index1": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "ArrayOperator"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a[b": null,
+  "a[b,": null,
+  "a[b,c,d]": null,
+  "a[b,c]": {
+    "statements": [
+      {
+        "array": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "array-type": "Array",
+        "index1": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "index2": {
+          "name": "c",
+          "type": "Variable"
+        },
+        "type": "ArrayOperator"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a[b]": {
+    "statements": [
+      {
+        "array": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "array-type": "Array",
+        "index1": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "ArrayOperator"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a[|": null,
+  "a[|b": null,
+  "a[|b,": null,
+  "a[|b,c]": null,
+  "a[|b]": {
+    "statements": [
+      {
+        "array": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "array-type": "List",
+        "index1": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "ArrayOperator"
+      }
+    ],
+    "type": "Statements"
+  }
+}

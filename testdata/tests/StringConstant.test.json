@@ -1,0 +1,76 @@
+{
+  "\"\"": {
+    "statements": [
+      {
+        "type": "StringConstant",
+        "value": ""
+      }
+    ],
+    "type": "Statements"
+  },
+  "\"'\"": {
+    "statements": [
+      {
+        "type": "StringConstant",
+        "value": "'"
+      }
+    ],
+    "type": "Statements"
+  },
+  "\"123": null,
+  "\"123\r\n456\"": {
+    "statements": [
+      {
+        "type": "StringConstant",
+        "value": "123\r\n456"
+      }
+    ],
+    "type": "Statements"
+  },
+  "\"123\"": {
+    "statements": [
+      {
+        "type": "StringConstant",
+        "value": "123"
+      }
+    ],
+    "type": "Statements"
+  },
+  "'\"'": {
+    "statements": [
+      {
+        "type": "StringConstant",
+        "value": "\""
+      }
+    ],
+    "type": "Statements"
+  },
+  "''": {
+    "statements": [
+      {
+        "type": "StringConstant",
+        "value": ""
+      }
+    ],
+    "type": "Statements"
+  },
+  "'123": null,
+  "'123\r\n456'": {
+    "statements": [
+      {
+        "type": "StringConstant",
+        "value": "123\r\n456"
+      }
+    ],
+    "type": "Statements"
+  },
+  "'123'": {
+    "statements": [
+      {
+        "type": "StringConstant",
+        "value": "123"
+      }
+    ],
+    "type": "Statements"
+  }
+}

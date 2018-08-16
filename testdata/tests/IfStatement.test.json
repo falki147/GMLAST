@@ -1,0 +1,100 @@
+{
+  "if": null,
+  "if (0) 1": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "type": "IfStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "if (0) 1 else": null,
+  "if (0) 1 else 2": {
+    "statements": [
+      {
+        "else-statement": {
+          "type": "IntConstant",
+          "value": 2
+        },
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "type": "IfStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "if (0) if (1) 2 else 3": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "statement": {
+          "else-statement": {
+            "type": "IntConstant",
+            "value": 3
+          },
+          "expression": {
+            "type": "IntConstant",
+            "value": 1
+          },
+          "statement": {
+            "type": "IntConstant",
+            "value": 2
+          },
+          "type": "IfStatement"
+        },
+        "type": "IfStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "if (0) then 1": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "type": "IfStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "if 0": null,
+  "if 0 1": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "type": "IfStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

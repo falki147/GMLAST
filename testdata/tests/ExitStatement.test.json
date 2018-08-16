@@ -1,0 +1,10 @@
+{
+  "exit": {
+    "statements": [
+      {
+        "type": "ExitStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

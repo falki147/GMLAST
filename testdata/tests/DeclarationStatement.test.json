@@ -1,0 +1,177 @@
+{
+  "globalvar": {
+    "statements": [
+      {
+        "declarations": [],
+        "isGlobal": true,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "globalvar a": {
+    "statements": [
+      {
+        "declarations": [
+          {
+            "name": "a"
+          }
+        ],
+        "isGlobal": true,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "globalvar a =": null,
+  "globalvar a = 1": null,
+  "globalvar a = 1, b = 2": null,
+  "globalvar a = 1,b": null,
+  "globalvar a,": null,
+  "globalvar a, b": {
+    "statements": [
+      {
+        "declarations": [
+          {
+            "name": "a"
+          },
+          {
+            "name": "b"
+          }
+        ],
+        "isGlobal": true,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "globalvar a, b = 1": null,
+  "var": {
+    "statements": [
+      {
+        "declarations": [],
+        "isGlobal": false,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "var a": {
+    "statements": [
+      {
+        "declarations": [
+          {
+            "name": "a"
+          }
+        ],
+        "isGlobal": false,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "var a =": null,
+  "var a = 1": {
+    "statements": [
+      {
+        "declarations": [
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 1
+            },
+            "name": "a"
+          }
+        ],
+        "isGlobal": false,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "var a = 1, b = 2": {
+    "statements": [
+      {
+        "declarations": [
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 1
+            },
+            "name": "a"
+          },
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 2
+            },
+            "name": "b"
+          }
+        ],
+        "isGlobal": false,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "var a = 1,b": {
+    "statements": [
+      {
+        "declarations": [
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 1
+            },
+            "name": "a"
+          },
+          {
+            "name": "b"
+          }
+        ],
+        "isGlobal": false,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "var a,": null,
+  "var a, b": {
+    "statements": [
+      {
+        "declarations": [
+          {
+            "name": "a"
+          },
+          {
+            "name": "b"
+          }
+        ],
+        "isGlobal": false,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "var a, b = 1": {
+    "statements": [
+      {
+        "declarations": [
+          {
+            "name": "a"
+          },
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 1
+            },
+            "name": "b"
+          }
+        ],
+        "isGlobal": false,
+        "type": "DeclarationStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

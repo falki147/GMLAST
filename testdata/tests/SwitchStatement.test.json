@@ -1,0 +1,254 @@
+{
+  "switch": null,
+  "switch (0)": null,
+  "switch (0) { case 1: 2": null,
+  "switch (0) { case 1: 2 3 }": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "statements": [
+              {
+                "type": "IntConstant",
+                "value": 2
+              },
+              {
+                "type": "IntConstant",
+                "value": 3
+              }
+            ],
+            "switch-cases": [
+              {
+                "type": "IntConstant",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "switch (0) { case 1: 2 default: 3 }": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "statements": [
+              {
+                "type": "IntConstant",
+                "value": 2
+              }
+            ],
+            "switch-cases": [
+              {
+                "type": "IntConstant",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "statements": [
+              {
+                "type": "IntConstant",
+                "value": 3
+              }
+            ],
+            "switch-cases": [
+              null
+            ]
+          }
+        ],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "switch (0) { case 1: case 2: 3 4 }": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "statements": [
+              {
+                "type": "IntConstant",
+                "value": 3
+              },
+              {
+                "type": "IntConstant",
+                "value": 4
+              }
+            ],
+            "switch-cases": [
+              {
+                "type": "IntConstant",
+                "value": 1
+              },
+              {
+                "type": "IntConstant",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "switch (0) { case 1: case 2: default: 3 4 }": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "statements": [
+              {
+                "type": "IntConstant",
+                "value": 3
+              },
+              {
+                "type": "IntConstant",
+                "value": 4
+              }
+            ],
+            "switch-cases": [
+              {
+                "type": "IntConstant",
+                "value": 1
+              },
+              {
+                "type": "IntConstant",
+                "value": 2
+              },
+              null
+            ]
+          }
+        ],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "switch (0) { case 1: case 2: default: }": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "statements": [],
+            "switch-cases": [
+              {
+                "type": "IntConstant",
+                "value": 1
+              },
+              {
+                "type": "IntConstant",
+                "value": 2
+              },
+              null
+            ]
+          }
+        ],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "switch (0) { case 1: case 2: }": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "statements": [],
+            "switch-cases": [
+              {
+                "type": "IntConstant",
+                "value": 1
+              },
+              {
+                "type": "IntConstant",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "switch (0) { case 1: }": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "statements": [],
+            "switch-cases": [
+              {
+                "type": "IntConstant",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "switch (0) {}": {
+    "statements": [
+      {
+        "entries": [],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "switch 0 { 1 }": null,
+  "switch 0 {}": {
+    "statements": [
+      {
+        "entries": [],
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "SwitchStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

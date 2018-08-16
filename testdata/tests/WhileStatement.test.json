@@ -1,0 +1,36 @@
+{
+  "while": null,
+  "while (1) 2": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 2
+        },
+        "type": "WhileStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "while 1": null,
+  "while 1 2": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 2
+        },
+        "type": "WhileStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

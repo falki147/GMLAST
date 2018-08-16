@@ -1,0 +1,119 @@
+{
+  "!0": {
+    "statements": [
+      {
+        "operator-type": "LogicalNot",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  },
+  "++0": {
+    "statements": [
+      {
+        "operator-type": "PrefixIncrement",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  },
+  "+0": {
+    "statements": [
+      {
+        "operator-type": "Plus",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  },
+  "--0": {
+    "statements": [
+      {
+        "operator-type": "PrefixDecrement",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  },
+  "-0": {
+    "statements": [
+      {
+        "operator-type": "Minus",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  },
+  "0++": {
+    "statements": [
+      {
+        "operator-type": "PostfixIncrement",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  },
+  "0--": {
+    "statements": [
+      {
+        "operator-type": "PostfixDecrement",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  },
+  "not 0": {
+    "statements": [
+      {
+        "operator-type": "LogicalNot",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  },
+  "~0": {
+    "statements": [
+      {
+        "operator-type": "BitwiseNot",
+        "type": "UnuaryOperator",
+        "value": {
+          "type": "IntConstant",
+          "value": 0
+        }
+      }
+    ],
+    "type": "Statements"
+  }
+}

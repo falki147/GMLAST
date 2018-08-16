@@ -1,0 +1,11 @@
+#pragma once
+
+#define TESTDATA_STRINGIFY(s) #s
+
+const char* TestDataScriptFiles[] = {
+@TESTDATA_SCRIPT_FILES@
+};
+
+const char* TestDataTestFiles[] = {
+@TESTDATA_TEST_FILES@
+};

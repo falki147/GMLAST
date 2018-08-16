@@ -1,0 +1,248 @@
+{
+  "a %= b": {
+    "statements": [
+      {
+        "assign-type": "Mod",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a &= b": {
+    "statements": [
+      {
+        "assign-type": "BitAnd",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a *= b": {
+    "statements": [
+      {
+        "assign-type": "Mul",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a += b": {
+    "statements": [
+      {
+        "assign-type": "Add",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a -= b": {
+    "statements": [
+      {
+        "assign-type": "Sub",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a /= b": {
+    "statements": [
+      {
+        "assign-type": "Div",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a := b": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a := b = c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "CompareEqual",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = ": null,
+  "a = b": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b := c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "assign-type": "Assign",
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "AssignStatement"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b = c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "CompareEqual",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a ^= b": {
+    "statements": [
+      {
+        "assign-type": "BitXor",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a |= b": {
+    "statements": [
+      {
+        "assign-type": "BitOr",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "b",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

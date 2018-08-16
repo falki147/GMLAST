@@ -1,0 +1,36 @@
+{
+  "with": null,
+  "with (1) 2": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 2
+        },
+        "type": "WithStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "with 1": null,
+  "with 1 2": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 2
+        },
+        "type": "WithStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "repeat": null,
+  "repeat (1) 2": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 2
+        },
+        "type": "RepeatStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "repeat 1": null,
+  "repeat 1 2": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "statement": {
+          "type": "IntConstant",
+          "value": 2
+        },
+        "type": "RepeatStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

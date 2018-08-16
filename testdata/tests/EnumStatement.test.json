@@ -1,0 +1,111 @@
+{
+  "enum a": null,
+  "enum a{": null,
+  "enum a{b,c}": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "name": "b"
+          },
+          {
+            "name": "c"
+          }
+        ],
+        "name": "a",
+        "type": "EnumStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "enum a{b=1,c=1}": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 1
+            },
+            "name": "b"
+          },
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 1
+            },
+            "name": "c"
+          }
+        ],
+        "name": "a",
+        "type": "EnumStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "enum a{b=1,c}": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 1
+            },
+            "name": "b"
+          },
+          {
+            "name": "c"
+          }
+        ],
+        "name": "a",
+        "type": "EnumStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "enum a{b=1}": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "expression": {
+              "type": "IntConstant",
+              "value": 1
+            },
+            "name": "b"
+          }
+        ],
+        "name": "a",
+        "type": "EnumStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "enum a{b}": {
+    "statements": [
+      {
+        "entries": [
+          {
+            "name": "b"
+          }
+        ],
+        "name": "a",
+        "type": "EnumStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "enum a{}": {
+    "statements": [
+      {
+        "entries": [],
+        "name": "a",
+        "type": "EnumStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "enum a}": null,
+  "enum{}": null
+}

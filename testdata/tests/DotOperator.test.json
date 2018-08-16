@@ -1,0 +1,60 @@
+{
+  "1.": {
+    "statements": [
+      {
+        "type": "DoubleConstant",
+        "value": 1.0
+      }
+    ],
+    "type": "Statements"
+  },
+  "1.0": {
+    "statements": [
+      {
+        "type": "DoubleConstant",
+        "value": 1.0
+      }
+    ],
+    "type": "Statements"
+  },
+  "1.a": {
+    "statements": [
+      {
+        "type": "DoubleConstant",
+        "value": 1.0
+      },
+      {
+        "name": "a",
+        "type": "Variable"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a .0": {
+    "statements": [
+      {
+        "name": "a",
+        "type": "Variable"
+      },
+      {
+        "type": "DoubleConstant",
+        "value": 0.0
+      }
+    ],
+    "type": "Statements"
+  },
+  "a.": null,
+  "a.b": {
+    "statements": [
+      {
+        "expression": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "name": "b",
+        "type": "DotOperator"
+      }
+    ],
+    "type": "Statements"
+  }
+}

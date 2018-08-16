@@ -1,0 +1,36 @@
+{
+  "do until 1": null,
+  "do{}": null,
+  "do{}until 1": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "statement": {
+          "statements": [],
+          "type": "Statements"
+        },
+        "type": "DoStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "do{}until(1)": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "statement": {
+          "statements": [],
+          "type": "Statements"
+        },
+        "type": "DoStatement"
+      }
+    ],
+    "type": "Statements"
+  }
+}

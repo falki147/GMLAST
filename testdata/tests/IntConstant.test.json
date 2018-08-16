@@ -1,0 +1,75 @@
+{
+  "$": null,
+  "$1": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 1
+      }
+    ],
+    "type": "Statements"
+  },
+  "$10": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 16
+      }
+    ],
+    "type": "Statements"
+  },
+  "$F": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 15
+      }
+    ],
+    "type": "Statements"
+  },
+  "$FF": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 255
+      }
+    ],
+    "type": "Statements"
+  },
+  "(1)": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 1
+      }
+    ],
+    "type": "Statements"
+  },
+  "0": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 0
+      }
+    ],
+    "type": "Statements"
+  },
+  "10": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 10
+      }
+    ],
+    "type": "Statements"
+  },
+  "12": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 12
+      }
+    ],
+    "type": "Statements"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "": {
+    "statements": [],
+    "type": "Statements"
+  },
+  "1 2": {
+    "statements": [
+      {
+        "type": "IntConstant",
+        "value": 1
+      },
+      {
+        "type": "IntConstant",
+        "value": 2
+      }
+    ],
+    "type": "Statements"
+  },
+  "{ 1": null,
+  "{ 1 }": {
+    "statements": [
+      {
+        "statements": [
+          {
+            "type": "IntConstant",
+            "value": 1
+          }
+        ],
+        "type": "Statements"
+      }
+    ],
+    "type": "Statements"
+  },
+  "{}": {
+    "statements": [
+      {
+        "statements": [],
+        "type": "Statements"
+      }
+    ],
+    "type": "Statements"
+  }
+}
