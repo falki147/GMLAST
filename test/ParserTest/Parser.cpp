@@ -10,12 +10,17 @@
 #include <fstream>
 #include <memory>
 #include <nlohmann/json.hpp>
+#include <sstream>
 #include <testdata.hpp>
 
 struct ExceptionLogger : GMLAST::ILogger {
-  virtual void log(Level level, std::string msg, GMLAST::Location,
+  virtual void log(Level level, std::string msg, GMLAST::Location beg,
                    GMLAST::Location) override {
-    if (level == Level::Error) throw std::runtime_error(msg);
+    if (level == Level::Error) {
+      std::stringstream ss;
+      ss << beg.line + 1 << ':' << beg.column + 1 << ':' << msg;
+      throw std::runtime_error(ss.str());
+    }
   }
 };
 
@@ -37,8 +42,8 @@ TEST_CASE("Test Data Scripts", "[DefaultParser]") {
         }
       }
 
-      CHECK_NOTHROW(GMLAST::ParseDefault(GMLAST::CreateDefaultLexer(f),
-                                         std::make_unique<ExceptionLogger>()));
+      CHECK_NOTHROW(GMLAST::ParseDefault(
+          GMLAST::CreateDefaultLexer(f, std::make_unique<ExceptionLogger>())));
     }
   }
 }
@@ -53,15 +58,13 @@ TEST_CASE("Test Data Tests", "[DefaultParser]") {
         if (!entry.value().is_null()) {
           std::unique_ptr<GMLAST::Base> ast;
 
-          CHECK_NOTHROW(ast = GMLAST::ParseDefault(
-                            GMLAST::CreateDefaultLexer(entry.key()),
-                            std::make_unique<ExceptionLogger>()));
+          CHECK_NOTHROW(ast = GMLAST::ParseDefault(GMLAST::CreateDefaultLexer(
+                            entry.key(), std::make_unique<ExceptionLogger>())));
 
           CHECK(*ast == entry.value());
         } else
-          CHECK_THROWS(
-              GMLAST::ParseDefault(GMLAST::CreateDefaultLexer(entry.key()),
-                                   std::make_unique<ExceptionLogger>()));
+          CHECK_THROWS(GMLAST::ParseDefault(GMLAST::CreateDefaultLexer(
+              entry.key(), std::make_unique<ExceptionLogger>())));
       }
     }
   }
@@ -74,10 +77,10 @@ TEST_CASE("Random Scripts", "[DefaultParser]") {
     const auto seed = time + i;
 
     SECTION("Random " + std::to_string(seed)) {
-      CHECK_NOTHROW(GMLAST::ParseDefault(
-          std::unique_ptr<GMLAST::ILexer>{new ParserTest::RandomLexer(
-              100, static_cast<unsigned int>(seed))},
-          std::make_unique<NullLogger>()));
+      CHECK_NOTHROW(
+          GMLAST::ParseDefault(std::make_unique<ParserTest::RandomLexer>(
+                                   100, static_cast<unsigned int>(seed)),
+                               std::make_unique<NullLogger>()));
     }
   }
 }

@@ -51,6 +51,8 @@ std::unique_ptr<Base> DefaultParser::parse(std::unique_ptr<ILexer> lexer,
 DefaultParser::DefaultParser(std::unique_ptr<ILexer> lexer,
                              std::unique_ptr<ILogger> logger)
     : m_lexer(std::move(lexer)), m_logger(std::move(logger)) {
+  assert(m_lexer);
+
   m_token = m_lexer->lex();
   m_last = m_token.first();
 }
@@ -65,7 +67,7 @@ void DefaultParser::errorExpected(const Token& token,
                                   const std::string& expectation) {
   std::stringstream ss;
   ss << "expected " << expectation << " but got " << ToString(token.type());
-  m_logger->log(ILogger::Level::Error, ss.str(), token.first(), token.last());
+  logger().log(ILogger::Level::Error, ss.str(), token.first(), token.last());
 }
 
 void DefaultParser::errorUnexpected(const Token& token) {
@@ -77,7 +79,11 @@ void DefaultParser::errorUnexpected(const Token& token) {
   else
     ss << "EOF";
 
-  m_logger->log(ILogger::Level::Error, ss.str(), token.first(), token.last());
+  logger().log(ILogger::Level::Error, ss.str(), token.first(), token.last());
+}
+
+ILogger& DefaultParser::logger() {
+  return m_logger ? *m_logger : m_lexer->logger();
 }
 
 void DefaultParser::consume() {

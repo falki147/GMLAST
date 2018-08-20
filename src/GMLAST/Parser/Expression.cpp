@@ -133,9 +133,9 @@ std::unique_ptr<Value> DefaultParser::tryParseComparison(
       case Token::Type::Equal:
         if (!equalIsAssignment) {
           type = BinaryOperator::Type::CompareEqual;
-          m_logger->log(ILogger::Level::Warning,
-                        "'=' shouldn't be used for comparison", peek().first(),
-                        peek().last());
+          logger().log(ILogger::Level::Warning,
+                       "'=' shouldn't be used for comparison", peek().first(),
+                       peek().last());
           break;
         }
 

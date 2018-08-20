@@ -4,9 +4,6 @@ project(GMLAST)
 
 option(GMLAST_ENABLE_TESTING "Enable testing for GMLAST" OFF)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-find_package(REFLEX REQUIRED)
-
 add_subdirectory(src)
 
 if(GMLAST_ENABLE_TESTING)

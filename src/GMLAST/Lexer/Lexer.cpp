@@ -1,38 +1,56 @@
 #include <GMLAST/Lexer/DefaultLexer.hpp>
 #include <GMLAST/Lexer/Lexer.hpp>
-#include <GMLAST/Lexer/NullStream.hpp>
+#include <GMLAST/Utils/ILogger.hpp>
 
 namespace GMLAST {
 
-class DefaultLexer : public ILexer {
+template <class T>
+class IteratorStream : public IStream {
  public:
-  DefaultLexer(const reflex::Input& input) : m_base{input, m_outStream} {}
+  IteratorStream(T begin, T end) : m_cur{begin}, m_end{end} {}
 
-  virtual Token lex() override { return m_base.lexToken(); }
+  virtual int get() override {
+    if (m_cur == m_end) return EOF;
+    return *m_cur++;
+  }
 
  private:
-  DefaultLexerBase m_base;
-  NullStream m_outStream;
+  T m_cur, m_end;
 };
 
-std::unique_ptr<ILexer> CreateDefaultLexer(const char* cstring) {
-  return std::make_unique<DefaultLexer>(reflex::Input{cstring});
+struct StdStream : IStream {
+  StdStream(std::istream& stream) : stream{stream} {}
+
+  virtual int get() override { return stream.get(); }
+
+  std::istream& stream;
+};
+
+std::unique_ptr<ILexer> CreateDefaultLexer(const char* cstring,
+                                           std::unique_ptr<ILogger> logger) {
+  return std::make_unique<DefaultLexer>(
+      std::make_unique<IteratorStream<const char*>>(
+          cstring, cstring + std::char_traits<char>::length(cstring)),
+      std::move(logger));
 }
 
-std::unique_ptr<ILexer> CreateDefaultLexer(const wchar_t* wstring) {
-  return std::make_unique<DefaultLexer>(reflex::Input{wstring});
+std::unique_ptr<ILexer> CreateDefaultLexer(const std::string& string,
+                                           std::unique_ptr<ILogger> logger) {
+  return std::make_unique<DefaultLexer>(
+      std::make_unique<IteratorStream<std::string::const_iterator>>(
+          string.cbegin(), string.cend()),
+      std::move(logger));
 }
 
-std::unique_ptr<ILexer> CreateDefaultLexer(const std::string& string) {
-  return std::make_unique<DefaultLexer>(reflex::Input{string});
+std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream,
+                                           std::unique_ptr<ILogger> logger) {
+  return std::make_unique<DefaultLexer>(std::make_unique<StdStream>(istream),
+                                        std::move(logger));
 }
 
-std::unique_ptr<ILexer> CreateDefaultLexer(const std::wstring& wstring) {
-  return std::make_unique<DefaultLexer>(reflex::Input{wstring});
-}
-
-std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream) {
-  return std::make_unique<DefaultLexer>(reflex::Input{istream});
+std::unique_ptr<ILexer> CreateDefaultLexer(std::unique_ptr<IStream> stream,
+                                           std::unique_ptr<ILogger> logger) {
+  return std::make_unique<DefaultLexer>(std::move(stream), std::move(logger));
 }
 
 }  // namespace GMLAST

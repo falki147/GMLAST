@@ -1,16 +1,25 @@
 #pragma once
 
-#include <GMLAST/Lexer/ILexer.hpp>
+#include <GMLAST/Utils/IStream.hpp>
 #include <istream>
 #include <memory>
 #include <string>
 
 namespace GMLAST {
 
-std::unique_ptr<ILexer> CreateDefaultLexer(const char* cstring);
-std::unique_ptr<ILexer> CreateDefaultLexer(const wchar_t* wstring);
-std::unique_ptr<ILexer> CreateDefaultLexer(const std::string& string);
-std::unique_ptr<ILexer> CreateDefaultLexer(const std::wstring& wstring);
-std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream);
+struct ILexer;
+struct ILogger;
 
-}  // GMLAST
+std::unique_ptr<ILexer> CreateDefaultLexer(const char* cstring,
+                                           std::unique_ptr<ILogger> logger);
+
+std::unique_ptr<ILexer> CreateDefaultLexer(const std::string& string,
+                                           std::unique_ptr<ILogger> logger);
+
+std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream,
+                                           std::unique_ptr<ILogger> logger);
+
+std::unique_ptr<ILexer> CreateDefaultLexer(std::unique_ptr<IStream> stream,
+                                           std::unique_ptr<ILogger> logger);
+
+}  // namespace GMLAST
