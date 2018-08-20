@@ -9,6 +9,7 @@
 #include <GMLAST/AST/UnuaryOperator.hpp>
 #include <GMLAST/AST/Variable.hpp>
 #include <GMLAST/Parser/DefaultParser.hpp>
+#include <GMLAST/Utils/ILogger.hpp>
 
 namespace GMLAST {
 
@@ -132,6 +133,9 @@ std::unique_ptr<Value> DefaultParser::tryParseComparison(
       case Token::Type::Equal:
         if (!equalIsAssignment) {
           type = BinaryOperator::Type::CompareEqual;
+          m_logger->log(ILogger::Level::Warning,
+                        "'=' shouldn't be used for comparison", peek().first(),
+                        peek().last());
           break;
         }
 

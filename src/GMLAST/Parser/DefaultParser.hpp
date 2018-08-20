@@ -1,26 +1,23 @@
 #pragma once
 
-#include <GMLAST/Lexer/ILexer.hpp>
-#include <GMLAST/Parser/ValidationEntry.hpp>
+#include <GMLAST/Lexer/Token.hpp>
 #include <memory>
-#include <vector>
 
 namespace GMLAST {
 
 class Base;
 class Statement;
 class Value;
+struct ILogger;
+struct ILexer;
 
 class DefaultParser {
  public:
-  static std::unique_ptr<Base> parse(std::unique_ptr<ILexer> lexer);
-
-  static std::unique_ptr<Base> parse(
-      std::unique_ptr<ILexer> lexer,
-      std::vector<ValidationEntry>& validationEntries);
+  static std::unique_ptr<Base> parse(std::unique_ptr<ILexer> lexer,
+                                     std::unique_ptr<ILogger> logger);
 
  private:
-  DefaultParser(std::unique_ptr<ILexer> lexer);
+  DefaultParser(std::unique_ptr<ILexer> lexer, std::unique_ptr<ILogger> logger);
 
   void errorExpected(const Token& token, Token::Type expectation);
   void errorExpected(const Token& token, const std::string& expectation);
@@ -76,8 +73,8 @@ class DefaultParser {
 
   Token m_token;
   std::unique_ptr<ILexer> m_lexer;
+  std::unique_ptr<ILogger> m_logger;
   Location m_last;
-  std::vector<ValidationEntry> m_validationEntries;
 };
 
 }  // namespace GMLAST

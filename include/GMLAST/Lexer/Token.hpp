@@ -10,7 +10,6 @@ class Token {
  public:
   enum class Type {
     Invalid,
-    InvalidSymbol,
     ArrayClose,
     ArrayOpen,
     ArrayOpenGrid,
@@ -94,14 +93,12 @@ class Token {
 
   Token(Type type, Location first, Location last, const std::string& value)
       : m_type{type}, m_first{first}, m_last{last}, m_string{value} {
-    assert(type == Type::ConstString || type == Type::Identifier ||
-           type == Type::InvalidSymbol);
+    assert(type == Type::ConstString || type == Type::Identifier);
   }
 
   Token(Type type, Location first, Location last, std::string&& value)
       : m_type{type}, m_first{first}, m_last{last}, m_string{std::move(value)} {
-    assert(type == Type::ConstString || type == Type::Identifier ||
-           type == Type::InvalidSymbol);
+    assert(type == Type::ConstString || type == Type::Identifier);
   }
 
   Token(Type type, Location first, Location last, int value)
@@ -127,8 +124,7 @@ class Token {
   bool hasPosition() const noexcept { return m_first && m_last; }
 
   const std::string& getString() const noexcept {
-    assert(m_type == Type::ConstString || m_type == Type::Identifier ||
-           m_type == Type::InvalidSymbol);
+    assert(m_type == Type::ConstString || m_type == Type::Identifier);
     return m_string;
   }
 

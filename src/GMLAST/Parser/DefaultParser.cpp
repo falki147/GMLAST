@@ -14,29 +14,18 @@
 #include <GMLAST/AST/SwitchStatement.hpp>
 #include <GMLAST/AST/WhileStatement.hpp>
 #include <GMLAST/AST/WithStatement.hpp>
+#include <GMLAST/Lexer/ILexer.hpp>
 #include <GMLAST/Parser/DefaultParser.hpp>
 #include <GMLAST/Parser/Parser.hpp>
-#include <GMLAST/Parser/ParserException.hpp>
+#include <GMLAST/Utils/ILogger.hpp>
 #include <cassert>
 #include <sstream>
 
 namespace GMLAST {
 
-std::unique_ptr<Base> DefaultParser::parse(std::unique_ptr<ILexer> lexer) {
-  std::vector<ValidationEntry> entries;
-  auto ast = parse(std::move(lexer), entries);
-
-  for (auto& entry : entries)
-    if (entry.type() == ValidationEntry::Type::Error)
-      throw ParserException(entry.message(), entry.first(), entry.last());
-
-  return ast;
-}
-
-std::unique_ptr<Base> DefaultParser::parse(
-    std::unique_ptr<ILexer> lexer,
-    std::vector<ValidationEntry>& validationEntries) {
-  DefaultParser parser{std::move(lexer)};
+std::unique_ptr<Base> DefaultParser::parse(std::unique_ptr<ILexer> lexer,
+                                           std::unique_ptr<ILogger> logger) {
+  DefaultParser parser(std::move(lexer), std::move(logger));
 
   const auto first = parser.firstLocation();
   std::vector<std::unique_ptr<Statement>> statements;
@@ -55,30 +44,15 @@ std::unique_ptr<Base> DefaultParser::parse(
     }
   }
 
-  if (parser.peek()) parser.errorUnexpected(parser.peek());
-
-  validationEntries = std::move(parser.m_validationEntries);
-
   const auto last = parser.lastLocation();
   return std::make_unique<Statements>(std::move(statements), first, last);
 }
 
-DefaultParser::DefaultParser(std::unique_ptr<ILexer> lexer)
-    : m_lexer(std::move(lexer)) {
+DefaultParser::DefaultParser(std::unique_ptr<ILexer> lexer,
+                             std::unique_ptr<ILogger> logger)
+    : m_lexer(std::move(lexer)), m_logger(std::move(logger)) {
   m_token = m_lexer->lex();
   m_last = m_token.first();
-
-  while (m_token.is(Token::Type::InvalidSymbol)) {
-    std::string msg("invalid symbol");
-
-    if (!m_token.getString().empty()) msg += m_token.getString();
-
-    m_validationEntries.emplace_back(ValidationEntry::Type::Error, msg,
-                                     m_token.first(), m_token.last());
-
-    m_last = m_token.last();
-    m_token = m_lexer->lex();
-  }
 }
 
 void DefaultParser::errorExpected(const Token& token, Token::Type expectation) {
@@ -91,9 +65,7 @@ void DefaultParser::errorExpected(const Token& token,
                                   const std::string& expectation) {
   std::stringstream ss;
   ss << "expected " << expectation << " but got " << ToString(token.type());
-
-  m_validationEntries.push_back(
-      {ValidationEntry::Type::Error, ss.str(), token.first(), token.last()});
+  m_logger->log(ILogger::Level::Error, ss.str(), token.first(), token.last());
 }
 
 void DefaultParser::errorUnexpected(const Token& token) {
@@ -105,25 +77,12 @@ void DefaultParser::errorUnexpected(const Token& token) {
   else
     ss << "EOF";
 
-  m_validationEntries.push_back(
-      {ValidationEntry::Type::Error, ss.str(), token.first(), token.last()});
+  m_logger->log(ILogger::Level::Error, ss.str(), token.first(), token.last());
 }
 
 void DefaultParser::consume() {
   m_last = m_token.last();
   m_token = m_lexer->lex();
-
-  while (m_token.is(Token::Type::InvalidSymbol)) {
-    std::string msg("invalid symbol");
-
-    if (!m_token.getString().empty()) msg += m_token.getString();
-
-    m_validationEntries.emplace_back(ValidationEntry::Type::Error, msg,
-                                     m_token.first(), m_token.last());
-
-    m_last = m_token.last();
-    m_token = m_lexer->lex();
-  }
 }
 
 bool DefaultParser::consumeIf(Token::Type expectation) {

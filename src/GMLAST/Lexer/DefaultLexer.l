@@ -211,6 +211,6 @@ SD \"[^"]*\"
 {NF}         createToken(Token::Type::ConstDouble, StringToDouble(matcher().begin(), matcher().end())); return 1;
 {ID}         createToken(Token::Type::Identifier, matcher().str()); return 1;
 {WS}+
-.            createToken(Token::Type::InvalidSymbol, matcher().str()); return 1;
+.            /*createToken(Token::Type::InvalidSymbol, matcher().str()); return 1;*/
 
 %%
