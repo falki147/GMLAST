@@ -66,7 +66,13 @@ void DefaultParser::errorExpected(const Token& token, Token::Type expectation) {
 void DefaultParser::errorExpected(const Token& token,
                                   const std::string& expectation) {
   std::stringstream ss;
-  ss << "expected " << expectation << " but got " << ToString(token.type());
+  ss << "expected " << expectation << " but got ";
+
+  if (token)
+    ss << ToString(token.type());
+  else
+    ss << "EOF";
+
   logger().log(ILogger::Level::Error, ss.str(), token.first(), token.last());
 }
 
