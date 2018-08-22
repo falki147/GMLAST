@@ -14,6 +14,8 @@ target_include_directories(GMLAST
                            $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
                            $<INSTALL_INTERFACE:include>)
 
+target_compile_features(GMLAST PUBLIC cxx_std_11)
+
 install(TARGETS GMLAST EXPORT GMLAST ARCHIVE DESTINATION "lib/GMLAST")
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/GMLAST DESTINATION include
