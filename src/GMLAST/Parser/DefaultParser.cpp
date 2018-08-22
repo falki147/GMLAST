@@ -17,6 +17,7 @@
 #include <GMLAST/Lexer/ILexer.hpp>
 #include <GMLAST/Parser/DefaultParser.hpp>
 #include <GMLAST/Parser/Parser.hpp>
+#include <GMLAST/Parser/SyntaxChecker.hpp>
 #include <GMLAST/Utils/ILogger.hpp>
 #include <cassert>
 #include <sstream>
@@ -45,7 +46,10 @@ std::unique_ptr<Base> DefaultParser::parse(std::unique_ptr<ILexer> lexer,
   }
 
   const auto last = parser.lastLocation();
-  return std::make_unique<Statements>(std::move(statements), first, last);
+  auto ast = std::make_unique<Statements>(std::move(statements), first, last);
+  SyntaxChecker::visit(*ast, parser.logger());
+
+  return ast;
 }
 
 DefaultParser::DefaultParser(std::unique_ptr<ILexer> lexer,
