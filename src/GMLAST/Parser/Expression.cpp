@@ -406,7 +406,10 @@ std::unique_ptr<Value> DefaultParser::tryParseValue() {
         for (;;) {
           args.emplace_back(checkValue(tryParseExpression()));
 
-          if (peek().is(Token::Type::ParenClose)) break;
+          if (peek().is(Token::Type::ParenClose)) {
+            consume();
+            break;
+          }
 
           if (peek().is(Token::Type::Comma)) {
             consume();
@@ -416,9 +419,8 @@ std::unique_ptr<Value> DefaultParser::tryParseValue() {
           errorUnexpected(peek());
           break;
         }
-      }
-
-      consume();
+      } else
+        consume();
 
       const auto last = lastLocation();
       return std::make_unique<FunctionCall>(token.getString(), std::move(args),
