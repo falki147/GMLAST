@@ -1,20 +1,22 @@
 {
   "switch": null,
   "switch (0)": null,
-  "switch (0) { case 1: 2": null,
-  "switch (0) { case 1: 2 3 }": {
+  "switch (0) { case 1: a()": null,
+  "switch (0) { case 1: a() b() }": {
     "statements": [
       {
         "entries": [
           {
             "statements": [
               {
-                "type": "IntConstant",
-                "value": 2
+                "arguments": [],
+                "name": "a",
+                "type": "FunctionCall"
               },
               {
-                "type": "IntConstant",
-                "value": 3
+                "arguments": [],
+                "name": "b",
+                "type": "FunctionCall"
               }
             ],
             "switch-cases": [
@@ -34,15 +36,16 @@
     ],
     "type": "Statements"
   },
-  "switch (0) { case 1: 2 default: 3 }": {
+  "switch (0) { case 1: a() default: b() }": {
     "statements": [
       {
         "entries": [
           {
             "statements": [
               {
-                "type": "IntConstant",
-                "value": 2
+                "arguments": [],
+                "name": "a",
+                "type": "FunctionCall"
               }
             ],
             "switch-cases": [
@@ -55,8 +58,9 @@
           {
             "statements": [
               {
-                "type": "IntConstant",
-                "value": 3
+                "arguments": [],
+                "name": "b",
+                "type": "FunctionCall"
               }
             ],
             "switch-cases": [
@@ -73,19 +77,21 @@
     ],
     "type": "Statements"
   },
-  "switch (0) { case 1: case 2: 3 4 }": {
+  "switch (0) { case 1: case 2: a() b() }": {
     "statements": [
       {
         "entries": [
           {
             "statements": [
               {
-                "type": "IntConstant",
-                "value": 3
+                "arguments": [],
+                "name": "a",
+                "type": "FunctionCall"
               },
               {
-                "type": "IntConstant",
-                "value": 4
+                "arguments": [],
+                "name": "b",
+                "type": "FunctionCall"
               }
             ],
             "switch-cases": [
@@ -109,19 +115,21 @@
     ],
     "type": "Statements"
   },
-  "switch (0) { case 1: case 2: default: 3 4 }": {
+  "switch (0) { case 1: case 2: default: a() b() }": {
     "statements": [
       {
         "entries": [
           {
             "statements": [
               {
-                "type": "IntConstant",
-                "value": 3
+                "arguments": [],
+                "name": "a",
+                "type": "FunctionCall"
               },
               {
-                "type": "IntConstant",
-                "value": 4
+                "arguments": [],
+                "name": "b",
+                "type": "FunctionCall"
               }
             ],
             "switch-cases": [
@@ -237,7 +245,7 @@
     ],
     "type": "Statements"
   },
-  "switch 0 { 1 }": null,
+  "switch 0 { a() }": null,
   "switch 0 {}": {
     "statements": [
       {

@@ -1,9 +1,34 @@
 {
-  "abc": {
+  "ab0 = AB9": {
     "statements": [
       {
-        "name": "abc",
-        "type": "Variable"
+        "assign-type": "Assign",
+        "left": {
+          "name": "ab0",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "AB9",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "abc = _abc": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "abc",
+          "type": "Variable"
+        },
+        "right": {
+          "name": "_abc",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"

@@ -1,7 +1,8 @@
 {
   "for": null,
   "for(": null,
-  "for(0 0 0)0": {
+  "for(;;){}": null,
+  "for(foo() 0 bar()){}": {
     "statements": [
       {
         "expression": {
@@ -9,27 +10,25 @@
           "value": 0
         },
         "init-statement": {
-          "type": "IntConstant",
-          "value": 0
+          "arguments": [],
+          "name": "foo",
+          "type": "FunctionCall"
         },
         "iteration-statement": {
-          "type": "IntConstant",
-          "value": 0
+          "arguments": [],
+          "name": "bar",
+          "type": "FunctionCall"
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 0
+          "statements": [],
+          "type": "Statements"
         },
         "type": "ForStatement"
       }
     ],
     "type": "Statements"
   },
-  "for(0;": null,
-  "for(0;0;": null,
-  "for(0;0;0": null,
-  "for(0;0;0)": null,
-  "for(0;0;0)0": {
+  "for(var a = 0 0 a = 0){}": {
     "statements": [
       {
         "expression": {
@@ -37,23 +36,42 @@
           "value": 0
         },
         "init-statement": {
-          "type": "IntConstant",
-          "value": 0
+          "declarations": [
+            {
+              "expression": {
+                "type": "IntConstant",
+                "value": 0
+              },
+              "name": "a"
+            }
+          ],
+          "isGlobal": false,
+          "type": "DeclarationStatement"
         },
         "iteration-statement": {
-          "type": "IntConstant",
-          "value": 0
+          "assign-type": "Assign",
+          "left": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "right": {
+            "type": "IntConstant",
+            "value": 0
+          },
+          "type": "AssignStatement"
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 0
+          "statements": [],
+          "type": "Statements"
         },
         "type": "ForStatement"
       }
     ],
     "type": "Statements"
   },
-  "for(0;0;0;;)0": {
+  "for(var a = 0;": null,
+  "for(var a = 0;0;": null,
+  "for(var a = 0;0;;a = 0;;){}": {
     "statements": [
       {
         "expression": {
@@ -61,21 +79,162 @@
           "value": 0
         },
         "init-statement": {
-          "type": "IntConstant",
-          "value": 0
+          "declarations": [
+            {
+              "expression": {
+                "type": "IntConstant",
+                "value": 0
+              },
+              "name": "a"
+            }
+          ],
+          "isGlobal": false,
+          "type": "DeclarationStatement"
         },
         "iteration-statement": {
-          "type": "IntConstant",
-          "value": 0
+          "assign-type": "Assign",
+          "left": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "right": {
+            "type": "IntConstant",
+            "value": 0
+          },
+          "type": "AssignStatement"
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 0
+          "statements": [],
+          "type": "Statements"
         },
         "type": "ForStatement"
       }
     ],
     "type": "Statements"
   },
-  "for(;;)0": null
+  "for(var a = 0;0;a = 0": null,
+  "for(var a = 0;0;a = 0)": null,
+  "for(var a = 0;0;a = 0){}": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "init-statement": {
+          "declarations": [
+            {
+              "expression": {
+                "type": "IntConstant",
+                "value": 0
+              },
+              "name": "a"
+            }
+          ],
+          "isGlobal": false,
+          "type": "DeclarationStatement"
+        },
+        "iteration-statement": {
+          "assign-type": "Assign",
+          "left": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "right": {
+            "type": "IntConstant",
+            "value": 0
+          },
+          "type": "AssignStatement"
+        },
+        "statement": {
+          "statements": [],
+          "type": "Statements"
+        },
+        "type": "ForStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "for(var a = 0;0;a = 0;;){}": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "init-statement": {
+          "declarations": [
+            {
+              "expression": {
+                "type": "IntConstant",
+                "value": 0
+              },
+              "name": "a"
+            }
+          ],
+          "isGlobal": false,
+          "type": "DeclarationStatement"
+        },
+        "iteration-statement": {
+          "assign-type": "Assign",
+          "left": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "right": {
+            "type": "IntConstant",
+            "value": 0
+          },
+          "type": "AssignStatement"
+        },
+        "statement": {
+          "statements": [],
+          "type": "Statements"
+        },
+        "type": "ForStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "for(var a = 0;;0;a = 0;;){}": {
+    "statements": [
+      {
+        "expression": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "init-statement": {
+          "declarations": [
+            {
+              "expression": {
+                "type": "IntConstant",
+                "value": 0
+              },
+              "name": "a"
+            }
+          ],
+          "isGlobal": false,
+          "type": "DeclarationStatement"
+        },
+        "iteration-statement": {
+          "assign-type": "Assign",
+          "left": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "right": {
+            "type": "IntConstant",
+            "value": 0
+          },
+          "type": "AssignStatement"
+        },
+        "statement": {
+          "statements": [],
+          "type": "Statements"
+        },
+        "type": "ForStatement"
+      }
+    ],
+    "type": "Statements"
+  }
 }

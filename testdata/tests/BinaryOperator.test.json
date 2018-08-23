@@ -1,492 +1,716 @@
 {
-  "+a + b": {
+  "a = +b + c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
-          "operator-type": "Plus",
-          "type": "UnuaryOperator",
-          "value": {
-            "name": "a",
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "operator-type": "Plus",
+            "type": "UnuaryOperator",
+            "value": {
+              "name": "b",
+              "type": "Variable"
+            }
+          },
+          "operator-type": "Add",
+          "right": {
+            "name": "c",
             "type": "Variable"
-          }
+          },
+          "type": "BinaryOperator"
         },
-        "operator-type": "Add",
-        "right": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "-a - b": {
+  "a = -b - c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
-          "operator-type": "Minus",
-          "type": "UnuaryOperator",
-          "value": {
-            "name": "a",
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "operator-type": "Minus",
+            "type": "UnuaryOperator",
+            "value": {
+              "name": "b",
+              "type": "Variable"
+            }
+          },
+          "operator-type": "Subtract",
+          "right": {
+            "name": "c",
             "type": "Variable"
-          }
+          },
+          "type": "BinaryOperator"
         },
-        "operator-type": "Subtract",
-        "right": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a != b": {
+  "a = b != c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "CompareNotEqual",
         "right": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "BinaryOperator"
-      }
-    ],
-    "type": "Statements"
-  },
-  "a % b": {
-    "statements": [
-      {
-        "left": {
-          "name": "a",
-          "type": "Variable"
-        },
-        "operator-type": "Modulo",
-        "right": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "BinaryOperator"
-      }
-    ],
-    "type": "Statements"
-  },
-  "a & b": {
-    "statements": [
-      {
-        "left": {
-          "name": "a",
-          "type": "Variable"
-        },
-        "operator-type": "BitwiseAnd",
-        "right": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "BinaryOperator"
-      }
-    ],
-    "type": "Statements"
-  },
-  "a && b": {
-    "statements": [
-      {
-        "left": {
-          "name": "a",
-          "type": "Variable"
-        },
-        "operator-type": "LogicalAnd",
-        "right": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "BinaryOperator"
-      }
-    ],
-    "type": "Statements"
-  },
-  "a * b": {
-    "statements": [
-      {
-        "left": {
-          "name": "a",
-          "type": "Variable"
-        },
-        "operator-type": "Multiply",
-        "right": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "BinaryOperator"
-      }
-    ],
-    "type": "Statements"
-  },
-  "a + +b": {
-    "statements": [
-      {
-        "left": {
-          "name": "a",
-          "type": "Variable"
-        },
-        "operator-type": "Add",
-        "right": {
-          "operator-type": "Plus",
-          "type": "UnuaryOperator",
-          "value": {
+          "left": {
             "name": "b",
             "type": "Variable"
-          }
+          },
+          "operator-type": "CompareNotEqual",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a + b": {
+  "a = b % c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "Add",
         "right": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "BinaryOperator"
-      }
-    ],
-    "type": "Statements"
-  },
-  "a - -b": {
-    "statements": [
-      {
-        "left": {
-          "name": "a",
-          "type": "Variable"
-        },
-        "operator-type": "Subtract",
-        "right": {
-          "operator-type": "Minus",
-          "type": "UnuaryOperator",
-          "value": {
+          "left": {
             "name": "b",
             "type": "Variable"
-          }
+          },
+          "operator-type": "Modulo",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a - b": {
+  "a = b & c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "Subtract",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "BitwiseAnd",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a / b": {
+  "a = b && c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "Divide",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "LogicalAnd",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a < b": {
+  "a = b * c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "CompareLess",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "Multiply",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a << b": {
+  "a = b + +c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "BitwiseLeft",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "Add",
+          "right": {
+            "operator-type": "Plus",
+            "type": "UnuaryOperator",
+            "value": {
+              "name": "c",
+              "type": "Variable"
+            }
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a <= b": {
+  "a = b + c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "CompareLessEqual",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "Add",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a == b": {
+  "a = b - -c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "CompareEqual",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "Subtract",
+          "right": {
+            "operator-type": "Minus",
+            "type": "UnuaryOperator",
+            "value": {
+              "name": "c",
+              "type": "Variable"
+            }
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a > b": {
+  "a = b - c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "CompareGreater",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "Subtract",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a >= b": {
+  "a = b / c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "CompareGreaterEqual",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "Divide",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a >> b": {
+  "a = b < c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "BitwiseRight",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "CompareLess",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a ^ b": {
+  "a = b << c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "BitwiseXor",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "BitwiseLeft",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a ^^ b": {
+  "a = b <= c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "LogicalXor",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "CompareLessEqual",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a and b": {
+  "a = b == c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "LogicalAnd",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "CompareEqual",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a div b": {
+  "a = b > c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "IntDivide",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "CompareGreater",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a mod b": {
+  "a = b >= c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "Modulo",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "CompareGreaterEqual",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a or b": {
+  "a = b >> c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "LogicalOr",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "BitwiseRight",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a xor b": {
+  "a = b ^ c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "LogicalXor",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "BitwiseXor",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a | b": {
+  "a = b ^^ c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "BitwiseOr",
         "right": {
-          "name": "b",
-          "type": "Variable"
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "LogicalXor",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
         },
-        "type": "BinaryOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a || b": {
+  "a = b and c": {
     "statements": [
       {
+        "assign-type": "Assign",
         "left": {
           "name": "a",
           "type": "Variable"
         },
-        "operator-type": "LogicalOr",
         "right": {
-          "name": "b",
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "LogicalAnd",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b div c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
           "type": "Variable"
         },
-        "type": "BinaryOperator"
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "IntDivide",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b mod c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "Modulo",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b or c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "LogicalOr",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b xor c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "LogicalXor",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b | c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "BitwiseOr",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b || c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "operator-type": "LogicalOr",
+          "right": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "BinaryOperator"
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"

@@ -1,6 +1,6 @@
 {
   "with": null,
-  "with (1) 2": {
+  "with (1) a()": {
     "statements": [
       {
         "expression": {
@@ -8,8 +8,9 @@
           "value": 1
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 2
+          "arguments": [],
+          "name": "a",
+          "type": "FunctionCall"
         },
         "type": "WithStatement"
       }
@@ -17,7 +18,7 @@
     "type": "Statements"
   },
   "with 1": null,
-  "with 1 2": {
+  "with 1 a()": {
     "statements": [
       {
         "expression": {
@@ -25,8 +26,9 @@
           "value": 1
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 2
+          "arguments": [],
+          "name": "a",
+          "type": "FunctionCall"
         },
         "type": "WithStatement"
       }

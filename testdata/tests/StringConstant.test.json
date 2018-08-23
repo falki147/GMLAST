@@ -1,74 +1,138 @@
 {
-  "\"\"": {
+  "a = \"\"": {
     "statements": [
       {
-        "type": "StringConstant",
-        "value": ""
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "StringConstant",
+          "value": ""
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "\"'\"": {
+  "a = \"'\"": {
     "statements": [
       {
-        "type": "StringConstant",
-        "value": "'"
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "StringConstant",
+          "value": "'"
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "\"123": null,
-  "\"123\r\n456\"": {
+  "a = \"123": null,
+  "a = \"123\r\n456\"": {
     "statements": [
       {
-        "type": "StringConstant",
-        "value": "123\r\n456"
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "StringConstant",
+          "value": "123\r\n456"
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "\"123\"": {
+  "a = \"123\"": {
     "statements": [
       {
-        "type": "StringConstant",
-        "value": "123"
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "StringConstant",
+          "value": "123"
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "'\"'": {
+  "a = '\"'": {
     "statements": [
       {
-        "type": "StringConstant",
-        "value": "\""
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "StringConstant",
+          "value": "\""
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "''": {
+  "a = ''": {
     "statements": [
       {
-        "type": "StringConstant",
-        "value": ""
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "StringConstant",
+          "value": ""
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "'123": null,
-  "'123\r\n456'": {
+  "a = '123": null,
+  "a = '123\r\n456'": {
     "statements": [
       {
-        "type": "StringConstant",
-        "value": "123\r\n456"
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "StringConstant",
+          "value": "123\r\n456"
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "'123'": {
+  "a = '123'": {
     "statements": [
       {
-        "type": "StringConstant",
-        "value": "123"
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "StringConstant",
+          "value": "123"
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"

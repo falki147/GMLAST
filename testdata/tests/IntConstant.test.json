@@ -1,73 +1,137 @@
 {
-  "$": null,
-  "$1": {
+  "a = $": null,
+  "a = $1": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 1
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "$10": {
+  "a = $10": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 16
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "IntConstant",
+          "value": 16
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "$F": {
+  "a = $F": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 15
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "IntConstant",
+          "value": 15
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "$FF": {
+  "a = $FF": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 255
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "IntConstant",
+          "value": 255
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "(1)": {
+  "a = (1)": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 1
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "IntConstant",
+          "value": 1
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "0": {
+  "a = 0": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 0
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "IntConstant",
+          "value": 0
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "10": {
+  "a = 10": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 10
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "IntConstant",
+          "value": 10
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "12": {
+  "a = 12": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 12
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "IntConstant",
+          "value": 12
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"

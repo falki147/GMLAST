@@ -161,31 +161,7 @@
     ],
     "type": "Statements"
   },
-  "a = b := c": {
-    "statements": [
-      {
-        "assign-type": "Assign",
-        "left": {
-          "name": "a",
-          "type": "Variable"
-        },
-        "right": {
-          "assign-type": "Assign",
-          "left": {
-            "name": "b",
-            "type": "Variable"
-          },
-          "right": {
-            "name": "c",
-            "type": "Variable"
-          },
-          "type": "AssignStatement"
-        },
-        "type": "AssignStatement"
-      }
-    ],
-    "type": "Statements"
-  },
+  "a = b := c": null,
   "a = b = c": {
     "statements": [
       {

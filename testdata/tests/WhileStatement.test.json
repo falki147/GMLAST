@@ -1,6 +1,6 @@
 {
   "while": null,
-  "while (1) 2": {
+  "while (1) a()": {
     "statements": [
       {
         "expression": {
@@ -8,8 +8,9 @@
           "value": 1
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 2
+          "arguments": [],
+          "name": "a",
+          "type": "FunctionCall"
         },
         "type": "WhileStatement"
       }
@@ -17,7 +18,7 @@
     "type": "Statements"
   },
   "while 1": null,
-  "while 1 2": {
+  "while 1 a()": {
     "statements": [
       {
         "expression": {
@@ -25,8 +26,9 @@
           "value": 1
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 2
+          "arguments": [],
+          "name": "a",
+          "type": "FunctionCall"
         },
         "type": "WhileStatement"
       }

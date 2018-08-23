@@ -1,58 +1,84 @@
 {
-  "1.": {
+  "1. = a": null,
+  "1.0 = a": null,
+  "1.a = b": null,
+  "a .0 = b": null,
+  "a = 1.": {
     "statements": [
       {
-        "type": "DoubleConstant",
-        "value": 1.0
-      }
-    ],
-    "type": "Statements"
-  },
-  "1.0": {
-    "statements": [
-      {
-        "type": "DoubleConstant",
-        "value": 1.0
-      }
-    ],
-    "type": "Statements"
-  },
-  "1.a": {
-    "statements": [
-      {
-        "type": "DoubleConstant",
-        "value": 1.0
-      },
-      {
-        "name": "a",
-        "type": "Variable"
-      }
-    ],
-    "type": "Statements"
-  },
-  "a .0": {
-    "statements": [
-      {
-        "name": "a",
-        "type": "Variable"
-      },
-      {
-        "type": "DoubleConstant",
-        "value": 0.0
-      }
-    ],
-    "type": "Statements"
-  },
-  "a.": null,
-  "a.b": {
-    "statements": [
-      {
-        "expression": {
+        "assign-type": "Assign",
+        "left": {
           "name": "a",
           "type": "Variable"
         },
-        "name": "b",
-        "type": "DotOperator"
+        "right": {
+          "type": "DoubleConstant",
+          "value": 1.0
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = 1.0": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "type": "DoubleConstant",
+          "value": 1.0
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = 1.b": null,
+  "a = b .0": null,
+  "a = b.": null,
+  "a = b.c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "expression": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "name": "c",
+          "type": "DotOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a. = b": null,
+  "a.b = c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "expression": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "name": "b",
+          "type": "DotOperator"
+        },
+        "right": {
+          "name": "c",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"

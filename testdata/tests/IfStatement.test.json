@@ -1,6 +1,6 @@
 {
   "if": null,
-  "if (0) 1": {
+  "if (0) a()": {
     "statements": [
       {
         "expression": {
@@ -8,36 +8,39 @@
           "value": 0
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 1
+          "arguments": [],
+          "name": "a",
+          "type": "FunctionCall"
         },
         "type": "IfStatement"
       }
     ],
     "type": "Statements"
   },
-  "if (0) 1 else": null,
-  "if (0) 1 else 2": {
+  "if (0) a() else": null,
+  "if (0) a() else b()": {
     "statements": [
       {
         "else-statement": {
-          "type": "IntConstant",
-          "value": 2
+          "arguments": [],
+          "name": "b",
+          "type": "FunctionCall"
         },
         "expression": {
           "type": "IntConstant",
           "value": 0
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 1
+          "arguments": [],
+          "name": "a",
+          "type": "FunctionCall"
         },
         "type": "IfStatement"
       }
     ],
     "type": "Statements"
   },
-  "if (0) if (1) 2 else 3": {
+  "if (0) if (1) a() else b()": {
     "statements": [
       {
         "expression": {
@@ -46,16 +49,18 @@
         },
         "statement": {
           "else-statement": {
-            "type": "IntConstant",
-            "value": 3
+            "arguments": [],
+            "name": "b",
+            "type": "FunctionCall"
           },
           "expression": {
             "type": "IntConstant",
             "value": 1
           },
           "statement": {
-            "type": "IntConstant",
-            "value": 2
+            "arguments": [],
+            "name": "a",
+            "type": "FunctionCall"
           },
           "type": "IfStatement"
         },
@@ -64,7 +69,7 @@
     ],
     "type": "Statements"
   },
-  "if (0) then 1": {
+  "if (0) then a()": {
     "statements": [
       {
         "expression": {
@@ -72,8 +77,9 @@
           "value": 0
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 1
+          "arguments": [],
+          "name": "a",
+          "type": "FunctionCall"
         },
         "type": "IfStatement"
       }
@@ -81,7 +87,7 @@
     "type": "Statements"
   },
   "if 0": null,
-  "if 0 1": {
+  "if 0 a()": {
     "statements": [
       {
         "expression": {
@@ -89,8 +95,9 @@
           "value": 0
         },
         "statement": {
-          "type": "IntConstant",
-          "value": 1
+          "arguments": [],
+          "name": "a",
+          "type": "FunctionCall"
         },
         "type": "IfStatement"
       }

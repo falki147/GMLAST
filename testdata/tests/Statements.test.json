@@ -3,27 +3,60 @@
     "statements": [],
     "type": "Statements"
   },
-  "1 2": {
+  "a() b()": {
     "statements": [
       {
-        "type": "IntConstant",
-        "value": 1
+        "arguments": [],
+        "name": "a",
+        "type": "FunctionCall"
       },
       {
-        "type": "IntConstant",
-        "value": 2
+        "arguments": [],
+        "name": "b",
+        "type": "FunctionCall"
       }
     ],
     "type": "Statements"
   },
-  "{ 1": null,
-  "{ 1 }": {
+  "a(); b();": {
+    "statements": [
+      {
+        "arguments": [],
+        "name": "a",
+        "type": "FunctionCall"
+      },
+      {
+        "arguments": [],
+        "name": "b",
+        "type": "FunctionCall"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a();; b();;": {
+    "statements": [
+      {
+        "arguments": [],
+        "name": "a",
+        "type": "FunctionCall"
+      },
+      {
+        "arguments": [],
+        "name": "b",
+        "type": "FunctionCall"
+      }
+    ],
+    "type": "Statements"
+  },
+  "{ a()": null,
+  "{ b() }": {
     "statements": [
       {
         "statements": [
           {
-            "type": "IntConstant",
-            "value": 1
+            "arguments": [],
+            "name": "b",
+            "type": "FunctionCall"
           }
         ],
         "type": "Statements"

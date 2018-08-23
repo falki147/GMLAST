@@ -1,151 +1,414 @@
 {
-  "a[": null,
-  "a[#": null,
-  "a[#b": null,
-  "a[#b,": null,
-  "a[#b,c]": {
+  "a = b[": null,
+  "a = b[#": null,
+  "a = b[#c": null,
+  "a = b[#c,": null,
+  "a = b[#c,d]": {
     "statements": [
       {
-        "array": {
+        "assign-type": "Assign",
+        "left": {
           "name": "a",
           "type": "Variable"
         },
-        "array-type": "Grid",
-        "index1": {
-          "name": "b",
+        "right": {
+          "array": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "array-type": "Grid",
+          "index1": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "index2": {
+            "name": "d",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b[#c]": null,
+  "a = b[?": null,
+  "a = b[?c": null,
+  "a = b[?c,": null,
+  "a = b[?c,d]": null,
+  "a = b[?c]": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
           "type": "Variable"
         },
-        "index2": {
+        "right": {
+          "array": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "array-type": "Map",
+          "index1": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b[@": null,
+  "a = b[@c": null,
+  "a = b[@c,": null,
+  "a = b[@c,d,e]": null,
+  "a = b[@c,d]": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "array": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "array-type": "Reference",
+          "index1": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "index2": {
+            "name": "d",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b[@c]": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "array": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "array-type": "Reference",
+          "index1": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b[c": null,
+  "a = b[c,": null,
+  "a = b[c,d,e]": null,
+  "a = b[c,d]": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "array": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "array-type": "Array",
+          "index1": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "index2": {
+            "name": "d",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b[c]": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "array": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "array-type": "Array",
+          "index1": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a = b[|": null,
+  "a = b[|c": null,
+  "a = b[|c,": null,
+  "a = b[|c,d]": null,
+  "a = b[|c]": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "name": "a",
+          "type": "Variable"
+        },
+        "right": {
+          "array": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "array-type": "List",
+          "index1": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a[ = b": null,
+  "a[# = b": null,
+  "a[#b = c": null,
+  "a[#b, = c": null,
+  "a[#b,c] = d": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "array": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "array-type": "Grid",
+          "index1": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "index2": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "right": {
+          "name": "d",
+          "type": "Variable"
+        },
+        "type": "AssignStatement"
+      }
+    ],
+    "type": "Statements"
+  },
+  "a[#b] = c": null,
+  "a[? = b": null,
+  "a[?b = c": null,
+  "a[?b, = c": null,
+  "a[?b,c] = d": null,
+  "a[?b] = c": {
+    "statements": [
+      {
+        "assign-type": "Assign",
+        "left": {
+          "array": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "array-type": "Map",
+          "index1": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "right": {
           "name": "c",
           "type": "Variable"
         },
-        "type": "ArrayOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a[#b]": null,
-  "a[?": null,
-  "a[?b": null,
-  "a[?b,": null,
-  "a[?b,c]": null,
-  "a[?b]": {
+  "a[@ = b": null,
+  "a[@b = c": null,
+  "a[@b, = c": null,
+  "a[@b,c,d] = e": null,
+  "a[@b,c] = d": {
     "statements": [
       {
-        "array": {
-          "name": "a",
+        "assign-type": "Assign",
+        "left": {
+          "array": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "array-type": "Reference",
+          "index1": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "index2": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "right": {
+          "name": "d",
           "type": "Variable"
         },
-        "array-type": "Map",
-        "index1": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "ArrayOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a[@": null,
-  "a[@b": null,
-  "a[@b,": null,
-  "a[@b,c,d]": null,
-  "a[@b,c]": {
+  "a[@b] = c": {
     "statements": [
       {
-        "array": {
-          "name": "a",
-          "type": "Variable"
+        "assign-type": "Assign",
+        "left": {
+          "array": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "array-type": "Reference",
+          "index1": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
         },
-        "array-type": "Reference",
-        "index1": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "index2": {
+        "right": {
           "name": "c",
           "type": "Variable"
         },
-        "type": "ArrayOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a[@b]": {
+  "a[b = c": null,
+  "a[b, = c": null,
+  "a[b,c,d] = e": null,
+  "a[b,c] = d": {
     "statements": [
       {
-        "array": {
-          "name": "a",
+        "assign-type": "Assign",
+        "left": {
+          "array": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "array-type": "Array",
+          "index1": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "index2": {
+            "name": "c",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "right": {
+          "name": "d",
           "type": "Variable"
         },
-        "array-type": "Reference",
-        "index1": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "ArrayOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a[b": null,
-  "a[b,": null,
-  "a[b,c,d]": null,
-  "a[b,c]": {
+  "a[b] = c": {
     "statements": [
       {
-        "array": {
-          "name": "a",
-          "type": "Variable"
+        "assign-type": "Assign",
+        "left": {
+          "array": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "array-type": "Array",
+          "index1": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
         },
-        "array-type": "Array",
-        "index1": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "index2": {
+        "right": {
           "name": "c",
           "type": "Variable"
         },
-        "type": "ArrayOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
   },
-  "a[b]": {
+  "a[| = b": null,
+  "a[|b = c": null,
+  "a[|b, = c": null,
+  "a[|b,c] = d": null,
+  "a[|b] = c": {
     "statements": [
       {
-        "array": {
-          "name": "a",
+        "assign-type": "Assign",
+        "left": {
+          "array": {
+            "name": "a",
+            "type": "Variable"
+          },
+          "array-type": "List",
+          "index1": {
+            "name": "b",
+            "type": "Variable"
+          },
+          "type": "ArrayOperator"
+        },
+        "right": {
+          "name": "c",
           "type": "Variable"
         },
-        "array-type": "Array",
-        "index1": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "ArrayOperator"
-      }
-    ],
-    "type": "Statements"
-  },
-  "a[|": null,
-  "a[|b": null,
-  "a[|b,": null,
-  "a[|b,c]": null,
-  "a[|b]": {
-    "statements": [
-      {
-        "array": {
-          "name": "a",
-          "type": "Variable"
-        },
-        "array-type": "List",
-        "index1": {
-          "name": "b",
-          "type": "Variable"
-        },
-        "type": "ArrayOperator"
+        "type": "AssignStatement"
       }
     ],
     "type": "Statements"
