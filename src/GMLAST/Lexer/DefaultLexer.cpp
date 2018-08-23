@@ -14,7 +14,8 @@ DefaultLexer::DefaultLexer(std::unique_ptr<IStream> stream,
 
 Token DefaultLexer::lex() {
   for (;;) {
-    if (eof()) return {};
+    if (eof())
+      return {Token::Type::Invalid, {m_line, m_column}, {m_line, m_column}};
 
     const auto begColumn = m_column;
 
