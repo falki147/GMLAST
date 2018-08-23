@@ -1,3 +1,5 @@
+#pragma once
+
 #include <GMLAST/Utils/Location.hpp>
 #include <string>
 
