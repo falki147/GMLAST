@@ -34,7 +34,7 @@ class DefaultLexer : public ILexer {
   std::unique_ptr<IStream> m_stream;
   std::unique_ptr<ILogger> m_logger;
   int m_value{0};
-  unsigned int m_line{0}, m_column{0};
+  int m_line{0}, m_index{0}, m_lineIndex{0};
 };
 
 }  // namespace GMLAST

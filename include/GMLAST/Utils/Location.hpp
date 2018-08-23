@@ -4,11 +4,10 @@ namespace GMLAST {
 
 struct Location {
   operator bool() const noexcept {
-    return line != InvalidValue && column != InvalidValue;
+    return line >= 0 && column >= 0 && index >= 0;
   }
 
-  static const auto InvalidValue = 0xFFFFFFFF;
-  unsigned int line{InvalidValue}, column{InvalidValue};
+  int line{-1}, column{-1}, index{-1};
 };
 
 }  // namespace GMLAST

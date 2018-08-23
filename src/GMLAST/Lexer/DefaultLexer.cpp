@@ -15,9 +15,11 @@ DefaultLexer::DefaultLexer(std::unique_ptr<IStream> stream,
 Token DefaultLexer::lex() {
   for (;;) {
     if (eof())
-      return {Token::Type::Invalid, {m_line, m_column}, {m_line, m_column}};
+      return {Token::Type::Invalid,
+              {m_line, m_index - m_lineIndex, m_index},
+              {m_line, m_index - m_lineIndex, m_index}};
 
-    const auto begColumn = m_column;
+    const auto begIndex = m_index;
 
     switch (peek()) {
       case '\t':
@@ -31,11 +33,12 @@ Token DefaultLexer::lex() {
         if (!eof() && peek() == '=') {
           consume();
           return {Token::Type::CmpNotEqual,
-                  {m_line, begColumn},
-                  {m_line, m_column}};
+                  {m_line, begIndex - m_lineIndex, begIndex},
+                  {m_line, m_index - m_lineIndex, m_index}};
         }
-        return {
-            Token::Type::LogicalNot, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::LogicalNot,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '\"':
         return handleString();
       case '$':
@@ -44,10 +47,13 @@ Token DefaultLexer::lex() {
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {
-              Token::Type::AssignMod, {m_line, begColumn}, {m_line, m_column}};
+          return {Token::Type::AssignMod,
+                  {m_line, begIndex - m_lineIndex, begIndex},
+                  {m_line, m_index - m_lineIndex, m_index}};
         }
-        return {Token::Type::Modulo, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Modulo,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '&':
         consume();
         if (!eof()) {
@@ -55,35 +61,41 @@ Token DefaultLexer::lex() {
             case '&':
               consume();
               return {Token::Type::LogicalAnd,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '=':
               consume();
               return {Token::Type::AssignBitAnd,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {
-            Token::Type::BitwiseAnd, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::BitwiseAnd,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '\'':
         return handleString();
       case '(':
         consume();
-        return {
-            Token::Type::ParenOpen, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::ParenOpen,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case ')':
         consume();
-        return {
-            Token::Type::ParenClose, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::ParenClose,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '*':
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {
-              Token::Type::AssignMul, {m_line, begColumn}, {m_line, m_column}};
+          return {Token::Type::AssignMul,
+                  {m_line, begIndex - m_lineIndex, begIndex},
+                  {m_line, m_index - m_lineIndex, m_index}};
         }
-        return {Token::Type::Multiply, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Multiply,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '+':
         consume();
         if (!eof()) {
@@ -91,19 +103,23 @@ Token DefaultLexer::lex() {
             case '+':
               consume();
               return {Token::Type::Increment,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '=':
               consume();
               return {Token::Type::AssignAdd,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {Token::Type::Plus, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Plus,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case ',':
         consume();
-        return {Token::Type::Comma, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Comma,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '-':
         consume();
         if (!eof()) {
@@ -111,16 +127,18 @@ Token DefaultLexer::lex() {
             case '-':
               consume();
               return {Token::Type::Decrement,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '=':
               consume();
               return {Token::Type::AssignSub,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {Token::Type::Minus, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Minus,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '/':
         consume();
         if (!eof()) {
@@ -136,22 +154,29 @@ Token DefaultLexer::lex() {
             case '=':
               consume();
               return {Token::Type::AssignDiv,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {Token::Type::Divide, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Divide,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case ':':
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {Token::Type::Assign, {m_line, begColumn}, {m_line, m_column}};
+          return {Token::Type::Assign,
+                  {m_line, begIndex - m_lineIndex, begIndex},
+                  {m_line, m_index - m_lineIndex, m_index}};
         }
-        return {Token::Type::Colon, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Colon,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case ';':
         consume();
-        return {
-            Token::Type::Semicolon, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Semicolon,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '<':
         consume();
         if (!eof()) {
@@ -159,24 +184,29 @@ Token DefaultLexer::lex() {
             case '<':
               consume();
               return {Token::Type::BitwiseLeft,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '=':
               consume();
               return {Token::Type::CmpLessEqual,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {Token::Type::CmpLess, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::CmpLess,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '=':
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {
-              Token::Type::CmpEqual, {m_line, begColumn}, {m_line, m_column}};
+          return {Token::Type::CmpEqual,
+                  {m_line, begIndex - m_lineIndex, begIndex},
+                  {m_line, m_index - m_lineIndex, m_index}};
         }
-        return {Token::Type::Equal, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::Equal,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '>':
         consume();
         if (!eof()) {
@@ -184,17 +214,18 @@ Token DefaultLexer::lex() {
             case '=':
               consume();
               return {Token::Type::CmpGreaterEqual,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '>':
               consume();
               return {Token::Type::BitwiseRight,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {
-            Token::Type::CmpGreater, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::CmpGreater,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '[':
         consume();
         if (!eof()) {
@@ -202,31 +233,33 @@ Token DefaultLexer::lex() {
             case '#':
               consume();
               return {Token::Type::ArrayOpenGrid,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '?':
               consume();
               return {Token::Type::ArrayOpenMap,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '@':
               consume();
               return {Token::Type::ArrayOpenRef,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '|':
               consume();
               return {Token::Type::ArrayOpenList,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {
-            Token::Type::ArrayOpen, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::ArrayOpen,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case ']':
         consume();
-        return {
-            Token::Type::ArrayClose, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::ArrayClose,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '^':
         consume();
         if (!eof()) {
@@ -234,21 +267,23 @@ Token DefaultLexer::lex() {
             case '=':
               consume();
               return {Token::Type::AssignBitXor,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '^':
               consume();
               return {Token::Type::LogicalXor,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {
-            Token::Type::BitwiseXor, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::BitwiseXor,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '{':
         consume();
-        return {
-            Token::Type::BraceOpen, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::BraceOpen,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '|':
         consume();
         if (!eof()) {
@@ -256,25 +291,28 @@ Token DefaultLexer::lex() {
             case '=':
               consume();
               return {Token::Type::AssignBitOr,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
             case '|':
               consume();
               return {Token::Type::LogicalOr,
-                      {m_line, begColumn},
-                      {m_line, m_column}};
+                      {m_line, begIndex - m_lineIndex, begIndex},
+                      {m_line, m_index - m_lineIndex, m_index}};
           }
         }
-        return {
-            Token::Type::BitwiseOr, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::BitwiseOr,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '}':
         consume();
-        return {
-            Token::Type::BraceClose, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::BraceClose,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       case '~':
         consume();
-        return {
-            Token::Type::BitwiseNot, {m_line, begColumn}, {m_line, m_column}};
+        return {Token::Type::BitwiseNot,
+                {m_line, begIndex - m_lineIndex, begIndex},
+                {m_line, m_index - m_lineIndex, m_index}};
       default:
         if (peek() == '.') return handleDot();
 
@@ -296,10 +334,10 @@ int DefaultLexer::peek() { return m_value; }
 void DefaultLexer::consume() {
   if (m_value == '\n') {
     ++m_line;
-    m_column = 0;
+    m_lineIndex = ++m_index;
   } else if ((m_value & 0xC0) != 0x80)  // Only increase column if byte is ASCII
                                         // or the start of an UTF8 sequence
-    ++m_column;
+    ++m_index;
 
   m_value = m_stream->get();
 }
@@ -307,11 +345,13 @@ void DefaultLexer::consume() {
 bool DefaultLexer::eof() { return m_value == EOF; }
 
 Token DefaultLexer::handleDot() {
-  const auto beginColumn = m_column;
+  const auto beginIndex = m_index;
   consume();
 
   if (peek() < '0' || peek() > '9')
-    return {Token::Type::Dot, {m_line, beginColumn}, {m_line, m_column}};
+    return {Token::Type::Dot,
+            {m_line, beginIndex - m_lineIndex, beginIndex},
+            {m_line, m_index - m_lineIndex, m_index}};
 
   std::string buffer(1, '.');
 
@@ -322,18 +362,19 @@ Token DefaultLexer::handleDot() {
 
   try {
     return {Token::Type::ConstDouble,
-            {m_line, beginColumn},
-            {m_line, m_column},
+            {m_line, beginIndex - m_lineIndex, beginIndex},
+            {m_line, m_index - m_lineIndex, m_index},
             std::stod(buffer)};
   } catch (const std::logic_error& ex) {
-    m_logger->log(ILogger::Level::Error, ex.what(), {m_line, beginColumn},
-                  {m_line, m_column});
+    m_logger->log(ILogger::Level::Error, ex.what(),
+                  {m_line, beginIndex - m_lineIndex, beginIndex},
+                  {m_line, m_index - m_lineIndex, m_index});
     return lex();
   }
 }
 
 Token DefaultLexer::handleHexNumber() {
-  const auto beginColumn = m_column;
+  const auto beginIndex = m_index;
   int number{0};
 
   consume();
@@ -341,7 +382,8 @@ Token DefaultLexer::handleHexNumber() {
   if ((peek() < '0' || peek() > '9') && (peek() < 'A' || peek() > 'F') &&
       (peek() < 'a' || peek() > 'f')) {
     m_logger->log(ILogger::Level::Error, "unexpected character '$'",
-                  {m_line, m_column - 1}, {m_line, m_column});
+                  {m_line, beginIndex - m_lineIndex, beginIndex},
+                  {m_line, m_index - m_lineIndex, m_index});
 
     return lex();
   }
@@ -359,12 +401,14 @@ Token DefaultLexer::handleHexNumber() {
     consume();
   }
 
-  return {
-      Token::Type::ConstInt, {m_line, beginColumn}, {m_line, m_column}, number};
+  return {Token::Type::ConstInt,
+          {m_line, beginIndex - m_lineIndex, beginIndex},
+          {m_line, m_index - m_lineIndex, m_index},
+          number};
 }
 
 Token DefaultLexer::handleIdentifier() {
-  const auto beginColumn = m_column;
+  const auto beginIndex = m_index;
   std::string buffer;
 
   while (peek() == '_' || (peek() >= '0' && peek() <= '9') ||
@@ -447,16 +491,18 @@ Token DefaultLexer::handleIdentifier() {
   }
 
   if (type != Token::Type::Identifier)
-    return {type, {m_line, beginColumn}, {m_line, m_column}};
+    return {type,
+            {m_line, beginIndex - m_lineIndex, beginIndex},
+            {m_line, m_index - m_lineIndex, m_index}};
 
   return {Token::Type::Identifier,
-          {m_line, beginColumn},
-          {m_line, m_column},
+          {m_line, beginIndex - m_lineIndex, beginIndex},
+          {m_line, m_index - m_lineIndex, m_index},
           std::move(buffer)};
 }
 
 Token DefaultLexer::handleNumber() {
-  const auto beginColumn = m_column;
+  const auto beginIndex = m_index;
 
   try {
     std::string buffer;
@@ -476,25 +522,26 @@ Token DefaultLexer::handleNumber() {
       }
 
       return {Token::Type::ConstDouble,
-              {m_line, beginColumn},
-              {m_line, m_column},
+              {m_line, beginIndex - m_lineIndex, beginIndex},
+              {m_line, m_index - m_lineIndex, m_index},
               std::stod(buffer)};
     } else {
       return {Token::Type::ConstInt,
-              {m_line, beginColumn},
-              {m_line, m_column},
+              {m_line, beginIndex - m_lineIndex, beginIndex},
+              {m_line, m_index - m_lineIndex, m_index},
               std::stoi(buffer)};
     }
   } catch (const std::logic_error& ex) {
-    m_logger->log(ILogger::Level::Error, ex.what(), {m_line, beginColumn},
-                  {m_line, m_column});
+    m_logger->log(ILogger::Level::Error, ex.what(),
+                  {m_line, beginIndex - m_lineIndex, beginIndex},
+                  {m_line, m_index - m_lineIndex, m_index});
     return lex();
   }
 }
 
 Token DefaultLexer::handleString() {
   const auto beginLine = m_line;
-  const auto beginColumn = m_column;
+  const auto beginIndex = m_index;
   const auto endChar = peek();
 
   consume();
@@ -508,12 +555,13 @@ Token DefaultLexer::handleString() {
   if (eof())
     m_logger->log(ILogger::Level::Error,
                   "unexpected end of file, string has no end",
-                  {m_line, m_column}, {m_line, m_column});
+                  {m_line, beginIndex - m_lineIndex, beginIndex},
+                  {m_line, m_index - m_lineIndex, m_index});
 
   consume();
   return {Token::Type::ConstString,
-          {beginLine, beginColumn},
-          {m_line, m_column},
+          {m_line, beginIndex - m_lineIndex, beginIndex},
+          {m_line, m_index - m_lineIndex, m_index},
           std::move(out)};
 }
 
@@ -537,7 +585,8 @@ void DefaultLexer::handleMultilineComment() {
 
   m_logger->log(ILogger::Level::Error,
                 "unexpected end of file, comment has no end",
-                {m_line, m_column}, {m_line, m_column});
+                {m_line, m_index - m_lineIndex, m_index},
+                {m_line, m_index - m_lineIndex, m_index});
 }
 
 void DefaultLexer::handleUnexpectedCharacter() {
@@ -561,8 +610,9 @@ void DefaultLexer::handleUnexpectedCharacter() {
     msg += '\'';
   }
 
-  m_logger->log(ILogger::Level::Error, std::move(msg), {m_line, m_column - 1},
-                {m_line, m_column});
+  m_logger->log(ILogger::Level::Error, std::move(msg),
+                {m_line, m_index - m_lineIndex - 1, m_index - 1},
+                {m_line, m_index - m_lineIndex, m_index});
 }
 
 }  // namespace GMLAST
