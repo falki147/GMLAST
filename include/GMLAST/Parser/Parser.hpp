@@ -10,4 +10,7 @@ struct ILogger;
 std::unique_ptr<Base> ParseDefault(std::unique_ptr<ILexer> lexer,
                                    std::unique_ptr<ILogger> logger = {});
 
+std::unique_ptr<Base> ParseDefault(std::unique_ptr<ILexer> lexer,
+                                   ILogger& logger);
+
 }  // namespace GMLAST

@@ -1,6 +1,7 @@
 #include <GMLAST/Lexer/DefaultLexer.hpp>
 #include <GMLAST/Lexer/Lexer.hpp>
 #include <GMLAST/Utils/ILogger.hpp>
+#include <GMLAST/Utils/ReferenceLogger.hpp>
 
 namespace GMLAST {
 
@@ -51,6 +52,27 @@ std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream,
 std::unique_ptr<ILexer> CreateDefaultLexer(std::unique_ptr<IStream> stream,
                                            std::unique_ptr<ILogger> logger) {
   return std::make_unique<DefaultLexer>(std::move(stream), std::move(logger));
+}
+
+std::unique_ptr<ILexer> CreateDefaultLexer(const char* cstring,
+                                           ILogger& logger) {
+  return CreateDefaultLexer(cstring, std::make_unique<ReferenceLogger>(logger));
+}
+
+std::unique_ptr<ILexer> CreateDefaultLexer(const std::string& string,
+                                           ILogger& logger) {
+  return CreateDefaultLexer(string, std::make_unique<ReferenceLogger>(logger));
+}
+
+std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream,
+                                           ILogger& logger) {
+  return CreateDefaultLexer(istream, std::make_unique<ReferenceLogger>(logger));
+}
+
+std::unique_ptr<ILexer> CreateDefaultLexer(std::unique_ptr<IStream> stream,
+                                           ILogger& logger) {
+  return CreateDefaultLexer(std::move(stream),
+                            std::make_unique<ReferenceLogger>(logger));
 }
 
 }  // namespace GMLAST

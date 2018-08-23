@@ -22,4 +22,16 @@ std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream,
 std::unique_ptr<ILexer> CreateDefaultLexer(std::unique_ptr<IStream> stream,
                                            std::unique_ptr<ILogger> logger);
 
+std::unique_ptr<ILexer> CreateDefaultLexer(const char* cstring,
+                                           ILogger& logger);
+
+std::unique_ptr<ILexer> CreateDefaultLexer(const std::string& string,
+                                           ILogger& logger);
+
+std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream,
+                                           ILogger& logger);
+
+std::unique_ptr<ILexer> CreateDefaultLexer(std::unique_ptr<IStream> stream,
+                                           ILogger& logger);
+
 }  // namespace GMLAST
