@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(GMLAST)
+project(GMLAST LANGUAGES CXX)
 
 option(GMLAST_ENABLE_TESTING "Enable testing for GMLAST" OFF)
 
