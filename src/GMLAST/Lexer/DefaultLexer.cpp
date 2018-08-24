@@ -263,7 +263,7 @@ Token DefaultLexer::handleDot() {
   std::string buffer(1, '.');
 
   while (peek() >= '0' && peek() <= '9') {
-    buffer += peek();
+    buffer += static_cast<char>(peek());
     consume();
   }
 
@@ -312,7 +312,7 @@ Token DefaultLexer::handleIdentifier() {
 
   while (peek() == '_' || (peek() >= '0' && peek() <= '9') ||
          (peek() >= 'A' && peek() <= 'Z') || (peek() >= 'a' && peek() <= 'z')) {
-    buffer += peek();
+    buffer += static_cast<char>(peek());
     consume();
   }
 
@@ -401,7 +401,7 @@ Token DefaultLexer::handleNumber() {
     std::string buffer;
 
     while (peek() >= '0' && peek() <= '9') {
-      buffer += peek();
+      buffer += static_cast<char>(peek());
       consume();
     }
 
@@ -410,7 +410,7 @@ Token DefaultLexer::handleNumber() {
       consume();
 
       while (peek() >= '0' && peek() <= '9') {
-        buffer += peek();
+        buffer += static_cast<char>(peek());
         consume();
       }
 
@@ -434,7 +434,7 @@ Token DefaultLexer::handleString() {
 
   std::string out;
   while (!eof() && peek() != endChar) {
-    out.push_back(peek());
+    out.push_back(static_cast<char>(peek()));
     consume();
   }
 
@@ -479,12 +479,12 @@ void DefaultLexer::handleUnexpectedCharacter() {
     consume();
   } else {
     msg += '\'';
-    msg += peek();
+    msg += static_cast<char>(peek());
     consume();
 
     // Add remaining bytes of UTF8 sequence
     while (!eof() && (peek() & 0xC0) == 0x80) {
-      msg += peek();
+      msg += static_cast<char>(peek());
       consume();
     }
 

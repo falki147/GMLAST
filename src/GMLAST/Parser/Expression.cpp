@@ -320,23 +320,23 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
                type == Token::Type::ArrayOpenList ||
                type == Token::Type::ArrayOpenMap ||
                type == Token::Type::ArrayOpenRef) {
-      ArrayOperator::Type type;
+      ArrayOperator::Type arrayType;
 
       switch (peek().type()) {
         case Token::Type::ArrayOpenGrid:
-          type = ArrayOperator::Type::Grid;
+          arrayType = ArrayOperator::Type::Grid;
           break;
         case Token::Type::ArrayOpenList:
-          type = ArrayOperator::Type::List;
+          arrayType = ArrayOperator::Type::List;
           break;
         case Token::Type::ArrayOpenMap:
-          type = ArrayOperator::Type::Map;
+          arrayType = ArrayOperator::Type::Map;
           break;
         case Token::Type::ArrayOpenRef:
-          type = ArrayOperator::Type::Reference;
+          arrayType = ArrayOperator::Type::Reference;
           break;
         default:
-          type = ArrayOperator::Type::Array;
+          arrayType = ArrayOperator::Type::Array;
           break;
       }
 
@@ -344,18 +344,18 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
 
       auto index1 = checkValue(tryParseExpression());
 
-      if (type == ArrayOperator::Type::Grid) {
+      if (arrayType == ArrayOperator::Type::Grid) {
         consumeIf(Token::Type::Comma);
         auto index2 = checkValue(tryParseExpression());
         consumeIf(Token::Type::ArrayClose);
 
         const auto last = lastLocation();
-        return MakeUnique<ArrayOperator>(type, std::move(value),
+        return MakeUnique<ArrayOperator>(arrayType, std::move(value),
                                          std::move(index1), std::move(index2),
                                          first, last);
 
-      } else if (type == ArrayOperator::Type::Array ||
-                 type == ArrayOperator::Type::Reference) {
+      } else if (arrayType == ArrayOperator::Type::Array ||
+                 arrayType == ArrayOperator::Type::Reference) {
         std::unique_ptr<Value> arrayValue;
 
         if (peek().is(Token::Type::Comma)) {
@@ -364,12 +364,12 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
 
           const auto last = lastLocation();
           arrayValue = MakeUnique<ArrayOperator>(
-              type, std::move(value), std::move(index1), std::move(index2),
+              arrayType, std::move(value), std::move(index1), std::move(index2),
               first, last);
         } else {
           const auto last = lastLocation();
           arrayValue = MakeUnique<ArrayOperator>(
-              type, std::move(value), std::move(index1), first, last);
+              arrayType, std::move(value), std::move(index1), first, last);
         }
 
         consumeIf(Token::Type::ArrayClose);
@@ -378,7 +378,7 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
         consumeIf(Token::Type::ArrayClose);
 
         const auto last = lastLocation();
-        return MakeUnique<ArrayOperator>(type, std::move(value),
+        return MakeUnique<ArrayOperator>(arrayType, std::move(value),
                                          std::move(index1), first, last);
       }
     } else

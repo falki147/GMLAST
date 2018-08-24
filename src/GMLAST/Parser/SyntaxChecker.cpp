@@ -77,12 +77,11 @@ void SyntaxChecker::onBinaryOperator(const BinaryOperator& binaryOperator) {
   visitSubExpression(binaryOperator.right());
 }
 
-void SyntaxChecker::onBreakStatement(const BreakStatement& breakStatement) {
+void SyntaxChecker::onBreakStatement(const BreakStatement&) {
   assert(m_isStatement);
 }
 
-void SyntaxChecker::onContinueStatement(
-    const ContinueStatement& continueStatement) {
+void SyntaxChecker::onContinueStatement(const ContinueStatement&) {
   assert(m_isStatement);
 }
 
@@ -118,9 +117,9 @@ void SyntaxChecker::onEnumStatement(const EnumStatement& enumStatement) {
     if (entry.hasExpression()) visitSubExpression(entry.expression());
 }
 
-void SyntaxChecker::onError(const Error& error) {}
+void SyntaxChecker::onError(const Error&) {}
 
-void SyntaxChecker::onExitStatement(const ExitStatement& exitStatement) {
+void SyntaxChecker::onExitStatement(const ExitStatement&) {
   assert(m_isStatement);
 }
 

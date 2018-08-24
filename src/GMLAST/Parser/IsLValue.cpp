@@ -9,62 +9,54 @@ bool IsLValue::visit(const Base& base) {
   return visitor.m_isLValue;
 }
 
-void IsLValue::onArrayOperator(const ArrayOperator& arrayOperator) {
-  m_isLValue = true;
-}
+void IsLValue::onArrayOperator(const ArrayOperator&) { m_isLValue = true; }
 
-void IsLValue::onAssignStatement(const AssignStatement& assignStatement) {
-  m_isLValue = true;
-}
+void IsLValue::onAssignStatement(const AssignStatement&) { m_isLValue = true; }
 
-void IsLValue::onBinaryOperator(const BinaryOperator& binaryOperator) {}
+void IsLValue::onBinaryOperator(const BinaryOperator&) {}
 
-void IsLValue::onBreakStatement(const BreakStatement& breakStatement) {}
+void IsLValue::onBreakStatement(const BreakStatement&) {}
 
-void IsLValue::onContinueStatement(const ContinueStatement& continueStatement) {
-}
+void IsLValue::onContinueStatement(const ContinueStatement&) {}
 
-void IsLValue::onDeclarationStatement(
-    const DeclarationStatement& declarationStatement) {}
+void IsLValue::onDeclarationStatement(const DeclarationStatement&) {}
 
-void IsLValue::onDoStatement(const DoStatement& doStatement) {}
+void IsLValue::onDoStatement(const DoStatement&) {}
 
-void IsLValue::onDotOperator(const DotOperator& dotOperator) {
-  m_isLValue = true;
-}
+void IsLValue::onDotOperator(const DotOperator&) { m_isLValue = true; }
 
-void IsLValue::onDoubleConstant(const DoubleConstant& doubleConstant) {}
+void IsLValue::onDoubleConstant(const DoubleConstant&) {}
 
-void IsLValue::onEnumStatement(const EnumStatement& enumStatement) {}
+void IsLValue::onEnumStatement(const EnumStatement&) {}
 
-void IsLValue::onError(const Error& error) { m_isLValue = true; }
+void IsLValue::onError(const Error&) { m_isLValue = true; }
 
-void IsLValue::onExitStatement(const ExitStatement& exitStatement) {}
+void IsLValue::onExitStatement(const ExitStatement&) {}
 
-void IsLValue::onForStatement(const ForStatement& forStatement) {}
+void IsLValue::onForStatement(const ForStatement&) {}
 
-void IsLValue::onFunctionCall(const FunctionCall& functionCall) {}
+void IsLValue::onFunctionCall(const FunctionCall&) {}
 
-void IsLValue::onIfStatement(const IfStatement& ifStatement) {}
+void IsLValue::onIfStatement(const IfStatement&) {}
 
-void IsLValue::onIntConstant(const IntConstant& intConstant) {}
+void IsLValue::onIntConstant(const IntConstant&) {}
 
-void IsLValue::onRepeatStatement(const RepeatStatement& repeatStatement) {}
+void IsLValue::onRepeatStatement(const RepeatStatement&) {}
 
-void IsLValue::onReturnStatement(const ReturnStatement& returnStatement) {}
+void IsLValue::onReturnStatement(const ReturnStatement&) {}
 
-void IsLValue::onStatements(const Statements& statements) {}
+void IsLValue::onStatements(const Statements&) {}
 
-void IsLValue::onStringConstant(const StringConstant& stringConstant) {}
+void IsLValue::onStringConstant(const StringConstant&) {}
 
-void IsLValue::onSwitchStatement(const SwitchStatement& switchStatement) {}
+void IsLValue::onSwitchStatement(const SwitchStatement&) {}
 
-void IsLValue::onUnuaryOperator(const UnuaryOperator& unuaryOperator) {}
+void IsLValue::onUnuaryOperator(const UnuaryOperator&) {}
 
-void IsLValue::onVariable(const Variable& variable) { m_isLValue = true; }
+void IsLValue::onVariable(const Variable&) { m_isLValue = true; }
 
-void IsLValue::onWhileStatement(const WhileStatement& whileStatement) {}
+void IsLValue::onWhileStatement(const WhileStatement&) {}
 
-void IsLValue::onWithStatement(const WithStatement& withStatement) {}
+void IsLValue::onWithStatement(const WithStatement&) {}
 
 }  // namespace GMLAST

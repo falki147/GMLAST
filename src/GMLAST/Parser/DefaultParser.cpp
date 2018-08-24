@@ -369,10 +369,10 @@ std::unique_ptr<Statement> DefaultParser::parseSwitchStatement() {
       if (peek().is(Token::Type::Case)) {
         consume();
 
-        auto expression = checkValue(tryParseExpression());
+        auto caseExpression = checkValue(tryParseExpression());
         consumeIf(Token::Type::Colon);
 
-        cases.emplace_back(std::move(expression));
+        cases.emplace_back(std::move(caseExpression));
 
       } else if (peek().is(Token::Type::Default)) {
         consume();
