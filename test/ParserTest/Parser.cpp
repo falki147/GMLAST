@@ -29,6 +29,11 @@ struct NullLogger : GMLAST::ILogger {
                    GMLAST::Location) override {}
 };
 
+template <typename T, typename... Args>
+std::unique_ptr<T> MakeUnique(Args&&... args) {
+  return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
+
 TEST_CASE("Test Data Scripts", "[DefaultParser]") {
   for (auto file : TestDataScriptFiles) {
     SECTION(file) {
@@ -43,7 +48,7 @@ TEST_CASE("Test Data Scripts", "[DefaultParser]") {
       }
 
       CHECK_NOTHROW(GMLAST::ParseDefault(
-          GMLAST::CreateDefaultLexer(f, std::make_unique<ExceptionLogger>())));
+          GMLAST::CreateDefaultLexer(f, MakeUnique<ExceptionLogger>())));
     }
   }
 }
@@ -59,12 +64,12 @@ TEST_CASE("Test Data Tests", "[DefaultParser]") {
           std::unique_ptr<GMLAST::Base> ast;
 
           CHECK_NOTHROW(ast = GMLAST::ParseDefault(GMLAST::CreateDefaultLexer(
-                            entry.key(), std::make_unique<ExceptionLogger>())));
+                            entry.key(), MakeUnique<ExceptionLogger>())));
 
           CHECK(*ast == entry.value());
         } else
           CHECK_THROWS(GMLAST::ParseDefault(GMLAST::CreateDefaultLexer(
-              entry.key(), std::make_unique<ExceptionLogger>())));
+              entry.key(), MakeUnique<ExceptionLogger>())));
       }
     }
   }
@@ -78,9 +83,9 @@ TEST_CASE("Random Scripts", "[DefaultParser]") {
 
     SECTION("Random " + std::to_string(seed)) {
       CHECK_NOTHROW(
-          GMLAST::ParseDefault(std::make_unique<ParserTest::RandomLexer>(
+          GMLAST::ParseDefault(MakeUnique<ParserTest::RandomLexer>(
                                    100, static_cast<unsigned int>(seed)),
-                               std::make_unique<NullLogger>()));
+                               MakeUnique<NullLogger>()));
     }
   }
 }
