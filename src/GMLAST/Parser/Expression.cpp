@@ -323,9 +323,6 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
       ArrayOperator::Type type;
 
       switch (peek().type()) {
-        case Token::Type::ArrayOpen:
-          type = ArrayOperator::Type::Array;
-          break;
         case Token::Type::ArrayOpenGrid:
           type = ArrayOperator::Type::Grid;
           break;
@@ -337,6 +334,9 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
           break;
         case Token::Type::ArrayOpenRef:
           type = ArrayOperator::Type::Reference;
+          break;
+        default:
+          type = ArrayOperator::Type::Array;
           break;
       }
 

@@ -9,11 +9,11 @@ namespace GMLAST {
 
 class DeclarationStatement : public Statement {
  public:
-  DeclarationStatement(std::vector<DeclarationEntry> entries, bool isGlobal,
+  DeclarationStatement(bool isGlobal, std::vector<DeclarationEntry> entries,
                        Location first = {}, Location last = {})
       : Statement{first, last},
-        m_entries{std::move(entries)},
-        m_isGlobal{isGlobal} {}
+        m_isGlobal{isGlobal},
+        m_entries{std::move(entries)} {}
 
   virtual void visit(IVisitor& visitor) const override;
 
