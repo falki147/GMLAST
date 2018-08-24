@@ -19,6 +19,7 @@
 #include <GMLAST/Parser/Parser.hpp>
 #include <GMLAST/Parser/SyntaxChecker.hpp>
 #include <GMLAST/Utils/ILogger.hpp>
+#include <GMLAST/Utils/UniquePtrHelper.hpp>
 #include <cassert>
 #include <sstream>
 
@@ -46,7 +47,7 @@ std::unique_ptr<Base> DefaultParser::parse(std::unique_ptr<ILexer> lexer,
   }
 
   const auto last = parser.lastLocation();
-  auto ast = std::make_unique<Statements>(std::move(statements), first, last);
+  auto ast = MakeUnique<Statements>(std::move(statements), first, last);
   SyntaxChecker::visit(*ast, parser.logger());
 
   return ast;
@@ -119,7 +120,7 @@ bool DefaultParser::continueIf(Token::Type expectation) {
 std::unique_ptr<Value> DefaultParser::checkValue(std::unique_ptr<Value> value) {
   if (!value) {
     errorUnexpected(peek());
-    return std::make_unique<Error>();
+    return MakeUnique<Error>();
   }
 
   return value;
@@ -152,7 +153,7 @@ std::unique_ptr<Statement> DefaultParser::parseBlock() {
   consumeIf(Token::Type::BraceClose);
 
   const auto last = lastLocation();
-  return std::make_unique<Statements>(std::move(statements), first, last);
+  return MakeUnique<Statements>(std::move(statements), first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseGlobalVar() {
@@ -173,8 +174,8 @@ std::unique_ptr<Statement> DefaultParser::parseGlobalVar() {
   }
 
   const auto last = lastLocation();
-  return std::make_unique<DeclarationStatement>(std::move(entries), true, first,
-                                                last);
+  return MakeUnique<DeclarationStatement>(std::move(entries), true, first,
+                                          last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseStatement() {
@@ -182,7 +183,7 @@ std::unique_ptr<Statement> DefaultParser::parseStatement() {
 
   if (!value) {
     errorExpected(peek(), "statement");
-    return std::make_unique<Error>();
+    return MakeUnique<Error>();
   }
 
   return value;
@@ -249,8 +250,8 @@ std::unique_ptr<Statement> DefaultParser::parseVar() {
   }
 
   const auto last = lastLocation();
-  return std::make_unique<DeclarationStatement>(std::move(entries), false,
-                                                first, last);
+  return MakeUnique<DeclarationStatement>(std::move(entries), false, first,
+                                          last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseIfStatement() {
@@ -271,14 +272,13 @@ std::unique_ptr<Statement> DefaultParser::parseIfStatement() {
     skipSemicolons();
 
     const auto last = lastLocation();
-    return std::make_unique<IfStatement>(std::move(expression),
-                                         std::move(statement),
-                                         std::move(elseStatement), first, last);
+    return MakeUnique<IfStatement>(std::move(expression), std::move(statement),
+                                   std::move(elseStatement), first, last);
   }
 
   const auto last = lastLocation();
-  return std::make_unique<IfStatement>(std::move(expression),
-                                       std::move(statement), first, last);
+  return MakeUnique<IfStatement>(std::move(expression), std::move(statement),
+                                 first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseRepeatStatement() {
@@ -290,8 +290,8 @@ std::unique_ptr<Statement> DefaultParser::parseRepeatStatement() {
   skipSemicolons();
 
   const auto last = lastLocation();
-  return std::make_unique<RepeatStatement>(std::move(expression),
-                                           std::move(statement), first, last);
+  return MakeUnique<RepeatStatement>(std::move(expression),
+                                     std::move(statement), first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseWhileStatement() {
@@ -303,8 +303,8 @@ std::unique_ptr<Statement> DefaultParser::parseWhileStatement() {
   skipSemicolons();
 
   const auto last = lastLocation();
-  return std::make_unique<WhileStatement>(std::move(expression),
-                                          std::move(statement), first, last);
+  return MakeUnique<WhileStatement>(std::move(expression), std::move(statement),
+                                    first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseDoStatement() {
@@ -318,8 +318,8 @@ std::unique_ptr<Statement> DefaultParser::parseDoStatement() {
   auto expression = checkValue(tryParseExpression());
 
   const auto last = lastLocation();
-  return std::make_unique<DoStatement>(std::move(expression),
-                                       std::move(statement), first, last);
+  return MakeUnique<DoStatement>(std::move(expression), std::move(statement),
+                                 first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseForStatement() {
@@ -344,7 +344,7 @@ std::unique_ptr<Statement> DefaultParser::parseForStatement() {
   auto statement = parseStatement();
 
   const auto last = lastLocation();
-  return std::make_unique<ForStatement>(
+  return MakeUnique<ForStatement>(
       std::move(initStatement), std::move(checkExpression),
       std::move(iterationStatement), std::move(statement), first, last);
 }
@@ -415,8 +415,8 @@ std::unique_ptr<Statement> DefaultParser::parseSwitchStatement() {
   consumeIf(Token::Type::BraceClose);
   const auto last = lastLocation();
 
-  return std::make_unique<SwitchStatement>(std::move(expression),
-                                           std::move(entries), first, last);
+  return MakeUnique<SwitchStatement>(std::move(expression), std::move(entries),
+                                     first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseWithStatement() {
@@ -428,8 +428,8 @@ std::unique_ptr<Statement> DefaultParser::parseWithStatement() {
   skipSemicolons();
 
   const auto last = lastLocation();
-  return std::make_unique<WithStatement>(std::move(expression),
-                                         std::move(statement), first, last);
+  return MakeUnique<WithStatement>(std::move(expression), std::move(statement),
+                                   first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseReturnStatement() {
@@ -439,28 +439,28 @@ std::unique_ptr<Statement> DefaultParser::parseReturnStatement() {
   auto expression = checkValue(tryParseExpression());
 
   const auto last = lastLocation();
-  return std::make_unique<ReturnStatement>(std::move(expression), first, last);
+  return MakeUnique<ReturnStatement>(std::move(expression), first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseExitStatement() {
   const auto first = firstLocation();
   consumeIf(Token::Type::Exit);
   const auto last = lastLocation();
-  return std::make_unique<ExitStatement>();
+  return MakeUnique<ExitStatement>();
 }
 
 std::unique_ptr<Statement> DefaultParser::parseBreakStatement() {
   const auto first = firstLocation();
   consumeIf(Token::Type::Break);
   const auto last = lastLocation();
-  return std::make_unique<BreakStatement>(first, last);
+  return MakeUnique<BreakStatement>(first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseContinueStatement() {
   const auto first = firstLocation();
   consumeIf(Token::Type::Continue);
   const auto last = lastLocation();
-  return std::make_unique<ContinueStatement>(first, last);
+  return MakeUnique<ContinueStatement>(first, last);
 }
 
 std::unique_ptr<Statement> DefaultParser::parseEnumStatement() {
@@ -497,7 +497,7 @@ std::unique_ptr<Statement> DefaultParser::parseEnumStatement() {
   consumeIf(Token::Type::BraceClose);
 
   const auto last = lastLocation();
-  return std::make_unique<EnumStatement>(enumName, std::move(entries));
+  return MakeUnique<EnumStatement>(enumName, std::move(entries));
 }
 
 }  // namespace GMLAST

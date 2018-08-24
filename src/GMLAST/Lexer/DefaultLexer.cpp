@@ -14,12 +14,9 @@ DefaultLexer::DefaultLexer(std::unique_ptr<IStream> stream,
 
 Token DefaultLexer::lex() {
   for (;;) {
-    if (eof())
-      return {Token::Type::Invalid,
-              {m_line, m_index - m_lineIndex, m_index},
-              {m_line, m_index - m_lineIndex, m_index}};
+    if (eof()) return {Token::Type::Invalid, location(), location()};
 
-    const auto begIndex = m_index;
+    const auto begLocation = location();
 
     switch (peek()) {
       case '\t':
@@ -32,13 +29,9 @@ Token DefaultLexer::lex() {
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {Token::Type::CmpNotEqual,
-                  {m_line, begIndex - m_lineIndex, begIndex},
-                  {m_line, m_index - m_lineIndex, m_index}};
+          return {Token::Type::CmpNotEqual, begLocation, location()};
         }
-        return {Token::Type::LogicalNot,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::LogicalNot, begLocation, location()};
       case '\"':
         return handleString();
       case '$':
@@ -47,98 +40,66 @@ Token DefaultLexer::lex() {
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {Token::Type::AssignMod,
-                  {m_line, begIndex - m_lineIndex, begIndex},
-                  {m_line, m_index - m_lineIndex, m_index}};
+          return {Token::Type::AssignMod, begLocation, location()};
         }
-        return {Token::Type::Modulo,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Modulo, begLocation, location()};
       case '&':
         consume();
         if (!eof()) {
           switch (peek()) {
             case '&':
               consume();
-              return {Token::Type::LogicalAnd,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::LogicalAnd, begLocation, location()};
             case '=':
               consume();
-              return {Token::Type::AssignBitAnd,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::AssignBitAnd, begLocation, location()};
           }
         }
-        return {Token::Type::BitwiseAnd,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::BitwiseAnd, begLocation, location()};
       case '\'':
         return handleString();
       case '(':
         consume();
-        return {Token::Type::ParenOpen,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::ParenOpen, begLocation, location()};
       case ')':
         consume();
-        return {Token::Type::ParenClose,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::ParenClose, begLocation, location()};
       case '*':
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {Token::Type::AssignMul,
-                  {m_line, begIndex - m_lineIndex, begIndex},
-                  {m_line, m_index - m_lineIndex, m_index}};
+          return {Token::Type::AssignMul, begLocation, location()};
         }
-        return {Token::Type::Multiply,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Multiply, begLocation, location()};
       case '+':
         consume();
         if (!eof()) {
           switch (peek()) {
             case '+':
               consume();
-              return {Token::Type::Increment,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::Increment, begLocation, location()};
             case '=':
               consume();
-              return {Token::Type::AssignAdd,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::AssignAdd, begLocation, location()};
           }
         }
-        return {Token::Type::Plus,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Plus, begLocation, location()};
       case ',':
         consume();
-        return {Token::Type::Comma,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Comma, begLocation, location()};
       case '-':
         consume();
         if (!eof()) {
           switch (peek()) {
             case '-':
               consume();
-              return {Token::Type::Decrement,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::Decrement, begLocation, location()};
             case '=':
               consume();
-              return {Token::Type::AssignSub,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::AssignSub, begLocation, location()};
           }
         }
-        return {Token::Type::Minus,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Minus, begLocation, location()};
       case '/':
         consume();
         if (!eof()) {
@@ -153,166 +114,110 @@ Token DefaultLexer::lex() {
               return lex();
             case '=':
               consume();
-              return {Token::Type::AssignDiv,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::AssignDiv, begLocation, location()};
           }
         }
-        return {Token::Type::Divide,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Divide, begLocation, location()};
       case ':':
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {Token::Type::Assign,
-                  {m_line, begIndex - m_lineIndex, begIndex},
-                  {m_line, m_index - m_lineIndex, m_index}};
+          return {Token::Type::Assign, begLocation, location()};
         }
-        return {Token::Type::Colon,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Colon, begLocation, location()};
       case ';':
         consume();
-        return {Token::Type::Semicolon,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Semicolon, begLocation, location()};
       case '<':
         consume();
         if (!eof()) {
           switch (peek()) {
             case '<':
               consume();
-              return {Token::Type::BitwiseLeft,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::BitwiseLeft, begLocation, location()};
             case '=':
               consume();
-              return {Token::Type::CmpLessEqual,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::CmpLessEqual, begLocation, location()};
           }
         }
-        return {Token::Type::CmpLess,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::CmpLess, begLocation, location()};
       case '=':
         consume();
         if (!eof() && peek() == '=') {
           consume();
-          return {Token::Type::CmpEqual,
-                  {m_line, begIndex - m_lineIndex, begIndex},
-                  {m_line, m_index - m_lineIndex, m_index}};
+          return {Token::Type::CmpEqual, begLocation, location()};
         }
-        return {Token::Type::Equal,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::Equal, begLocation, location()};
       case '>':
         consume();
         if (!eof()) {
           switch (peek()) {
             case '=':
               consume();
-              return {Token::Type::CmpGreaterEqual,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::CmpGreaterEqual, begLocation, location()};
             case '>':
               consume();
-              return {Token::Type::BitwiseRight,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::BitwiseRight, begLocation, location()};
           }
         }
-        return {Token::Type::CmpGreater,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::CmpGreater, begLocation, location()};
       case '[':
         consume();
         if (!eof()) {
           switch (peek()) {
             case '#':
               consume();
-              return {Token::Type::ArrayOpenGrid,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::ArrayOpenGrid, begLocation, location()};
             case '?':
               consume();
-              return {Token::Type::ArrayOpenMap,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::ArrayOpenMap, begLocation, location()};
             case '@':
               consume();
-              return {Token::Type::ArrayOpenRef,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::ArrayOpenRef, begLocation, location()};
             case '|':
               consume();
-              return {Token::Type::ArrayOpenList,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::ArrayOpenList, begLocation, location()};
           }
         }
-        return {Token::Type::ArrayOpen,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::ArrayOpen, begLocation, location()};
       case ']':
         consume();
-        return {Token::Type::ArrayClose,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::ArrayClose, begLocation, location()};
       case '^':
         consume();
         if (!eof()) {
           switch (peek()) {
             case '=':
               consume();
-              return {Token::Type::AssignBitXor,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::AssignBitXor, begLocation, location()};
             case '^':
               consume();
-              return {Token::Type::LogicalXor,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::LogicalXor, begLocation, location()};
           }
         }
-        return {Token::Type::BitwiseXor,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::BitwiseXor, begLocation, location()};
       case '{':
         consume();
-        return {Token::Type::BraceOpen,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::BraceOpen, begLocation, location()};
       case '|':
         consume();
         if (!eof()) {
           switch (peek()) {
             case '=':
               consume();
-              return {Token::Type::AssignBitOr,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::AssignBitOr, begLocation, location()};
             case '|':
               consume();
-              return {Token::Type::LogicalOr,
-                      {m_line, begIndex - m_lineIndex, begIndex},
-                      {m_line, m_index - m_lineIndex, m_index}};
+              return {Token::Type::LogicalOr, begLocation, location()};
           }
         }
-        return {Token::Type::BitwiseOr,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::BitwiseOr, begLocation, location()};
       case '}':
         consume();
-        return {Token::Type::BraceClose,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::BraceClose, begLocation, location()};
       case '~':
         consume();
-        return {Token::Type::BitwiseNot,
-                {m_line, begIndex - m_lineIndex, begIndex},
-                {m_line, m_index - m_lineIndex, m_index}};
+        return {Token::Type::BitwiseNot, begLocation, location()};
       default:
         if (peek() == '.') return handleDot();
 
@@ -344,14 +249,16 @@ void DefaultLexer::consume() {
 
 bool DefaultLexer::eof() { return m_value == EOF; }
 
+Location DefaultLexer::location() const {
+  return {m_line, m_index - m_lineIndex, m_index};
+}
+
 Token DefaultLexer::handleDot() {
-  const auto beginIndex = m_index;
+  const auto begLocation = location();
   consume();
 
   if (peek() < '0' || peek() > '9')
-    return {Token::Type::Dot,
-            {m_line, beginIndex - m_lineIndex, beginIndex},
-            {m_line, m_index - m_lineIndex, m_index}};
+    return {Token::Type::Dot, begLocation, location()};
 
   std::string buffer(1, '.');
 
@@ -361,20 +268,16 @@ Token DefaultLexer::handleDot() {
   }
 
   try {
-    return {Token::Type::ConstDouble,
-            {m_line, beginIndex - m_lineIndex, beginIndex},
-            {m_line, m_index - m_lineIndex, m_index},
+    return {Token::Type::ConstDouble, begLocation, location(),
             std::stod(buffer)};
   } catch (const std::logic_error& ex) {
-    m_logger->log(ILogger::Level::Error, ex.what(),
-                  {m_line, beginIndex - m_lineIndex, beginIndex},
-                  {m_line, m_index - m_lineIndex, m_index});
+    m_logger->log(ILogger::Level::Error, ex.what(), begLocation, location());
     return lex();
   }
 }
 
 Token DefaultLexer::handleHexNumber() {
-  const auto beginIndex = m_index;
+  const auto begLocation = location();
   int number{0};
 
   consume();
@@ -382,8 +285,7 @@ Token DefaultLexer::handleHexNumber() {
   if ((peek() < '0' || peek() > '9') && (peek() < 'A' || peek() > 'F') &&
       (peek() < 'a' || peek() > 'f')) {
     m_logger->log(ILogger::Level::Error, "unexpected character '$'",
-                  {m_line, beginIndex - m_lineIndex, beginIndex},
-                  {m_line, m_index - m_lineIndex, m_index});
+                  begLocation, location());
 
     return lex();
   }
@@ -401,14 +303,11 @@ Token DefaultLexer::handleHexNumber() {
     consume();
   }
 
-  return {Token::Type::ConstInt,
-          {m_line, beginIndex - m_lineIndex, beginIndex},
-          {m_line, m_index - m_lineIndex, m_index},
-          number};
+  return {Token::Type::ConstInt, begLocation, location(), number};
 }
 
 Token DefaultLexer::handleIdentifier() {
-  const auto beginIndex = m_index;
+  const auto begLocation = location();
   std::string buffer;
 
   while (peek() == '_' || (peek() >= '0' && peek() <= '9') ||
@@ -490,19 +389,13 @@ Token DefaultLexer::handleIdentifier() {
       break;
   }
 
-  if (type != Token::Type::Identifier)
-    return {type,
-            {m_line, beginIndex - m_lineIndex, beginIndex},
-            {m_line, m_index - m_lineIndex, m_index}};
+  if (type != Token::Type::Identifier) return {type, begLocation, location()};
 
-  return {Token::Type::Identifier,
-          {m_line, beginIndex - m_lineIndex, beginIndex},
-          {m_line, m_index - m_lineIndex, m_index},
-          std::move(buffer)};
+  return {Token::Type::Identifier, begLocation, location(), std::move(buffer)};
 }
 
 Token DefaultLexer::handleNumber() {
-  const auto beginIndex = m_index;
+  const auto begLocation = location();
 
   try {
     std::string buffer;
@@ -521,27 +414,20 @@ Token DefaultLexer::handleNumber() {
         consume();
       }
 
-      return {Token::Type::ConstDouble,
-              {m_line, beginIndex - m_lineIndex, beginIndex},
-              {m_line, m_index - m_lineIndex, m_index},
+      return {Token::Type::ConstDouble, begLocation, location(),
               std::stod(buffer)};
     } else {
-      return {Token::Type::ConstInt,
-              {m_line, beginIndex - m_lineIndex, beginIndex},
-              {m_line, m_index - m_lineIndex, m_index},
+      return {Token::Type::ConstInt, begLocation, location(),
               std::stoi(buffer)};
     }
   } catch (const std::logic_error& ex) {
-    m_logger->log(ILogger::Level::Error, ex.what(),
-                  {m_line, beginIndex - m_lineIndex, beginIndex},
-                  {m_line, m_index - m_lineIndex, m_index});
+    m_logger->log(ILogger::Level::Error, ex.what(), begLocation, location());
     return lex();
   }
 }
 
 Token DefaultLexer::handleString() {
-  const auto beginLine = m_line;
-  const auto beginIndex = m_index;
+  const auto begLocation = location();
   const auto endChar = peek();
 
   consume();
@@ -554,15 +440,11 @@ Token DefaultLexer::handleString() {
 
   if (eof())
     m_logger->log(ILogger::Level::Error,
-                  "unexpected end of file, string has no end",
-                  {m_line, beginIndex - m_lineIndex, beginIndex},
-                  {m_line, m_index - m_lineIndex, m_index});
+                  "unexpected end of file, string has no end", begLocation,
+                  location());
 
   consume();
-  return {Token::Type::ConstString,
-          {m_line, beginIndex - m_lineIndex, beginIndex},
-          {m_line, m_index - m_lineIndex, m_index},
-          std::move(out)};
+  return {Token::Type::ConstString, begLocation, location(), std::move(out)};
 }
 
 void DefaultLexer::handleComment() {
@@ -584,9 +466,8 @@ void DefaultLexer::handleMultilineComment() {
   }
 
   m_logger->log(ILogger::Level::Error,
-                "unexpected end of file, comment has no end",
-                {m_line, m_index - m_lineIndex, m_index},
-                {m_line, m_index - m_lineIndex, m_index});
+                "unexpected end of file, comment has no end", location(),
+                location());
 }
 
 void DefaultLexer::handleUnexpectedCharacter() {
@@ -611,8 +492,7 @@ void DefaultLexer::handleUnexpectedCharacter() {
   }
 
   m_logger->log(ILogger::Level::Error, std::move(msg),
-                {m_line, m_index - m_lineIndex - 1, m_index - 1},
-                {m_line, m_index - m_lineIndex, m_index});
+                {m_line, m_index - m_lineIndex - 1, m_index - 1}, location());
 }
 
 }  // namespace GMLAST

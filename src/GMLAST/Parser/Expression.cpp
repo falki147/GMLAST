@@ -10,6 +10,7 @@
 #include <GMLAST/AST/Variable.hpp>
 #include <GMLAST/Parser/DefaultParser.hpp>
 #include <GMLAST/Utils/ILogger.hpp>
+#include <GMLAST/Utils/UniquePtrHelper.hpp>
 
 namespace GMLAST {
 
@@ -67,8 +68,8 @@ std::unique_ptr<Value> DefaultParser::tryParseAssignment(
   auto right = checkValue(tryParseAssignment(false));
 
   const auto last = lastLocation();
-  return std::make_unique<AssignStatement>(type, std::move(value),
-                                           std::move(right), first, last);
+  return MakeUnique<AssignStatement>(type, std::move(value), std::move(right),
+                                     first, last);
 }
 
 std::unique_ptr<Value> DefaultParser::tryParseLogical(bool equalIsAssignment) {
@@ -97,8 +98,8 @@ std::unique_ptr<Value> DefaultParser::tryParseLogical(bool equalIsAssignment) {
     auto right = checkValue(tryParseComparison(false));
 
     const auto last = lastLocation();
-    value = std::make_unique<BinaryOperator>(type, std::move(value),
-                                             std::move(right), first, last);
+    value = MakeUnique<BinaryOperator>(type, std::move(value), std::move(right),
+                                       first, last);
   }
 }
 
@@ -148,8 +149,8 @@ std::unique_ptr<Value> DefaultParser::tryParseComparison(
     auto right = checkValue(tryParseBitwise());
 
     const auto last = lastLocation();
-    value = std::make_unique<BinaryOperator>(type, std::move(value),
-                                             std::move(right), first, last);
+    value = MakeUnique<BinaryOperator>(type, std::move(value), std::move(right),
+                                       first, last);
   }
 }
 
@@ -185,8 +186,8 @@ std::unique_ptr<Value> DefaultParser::tryParseBitwise() {
     auto right = checkValue(tryParseAdditive());
 
     const auto last = lastLocation();
-    value = std::make_unique<BinaryOperator>(type, std::move(value),
-                                             std::move(right), first, last);
+    value = MakeUnique<BinaryOperator>(type, std::move(value), std::move(right),
+                                       first, last);
   }
 }
 
@@ -213,8 +214,8 @@ std::unique_ptr<Value> DefaultParser::tryParseAdditive() {
     auto right = checkValue(tryParseMultiplicative());
 
     const auto last = lastLocation();
-    value = std::make_unique<BinaryOperator>(type, std::move(value),
-                                             std::move(right), first, last);
+    value = MakeUnique<BinaryOperator>(type, std::move(value), std::move(right),
+                                       first, last);
   }
 }
 
@@ -247,8 +248,8 @@ std::unique_ptr<Value> DefaultParser::tryParseMultiplicative() {
     auto right = checkValue(tryParsePrefix());
 
     const auto last = lastLocation();
-    value = std::make_unique<BinaryOperator>(type, std::move(value),
-                                             std::move(right), first, last);
+    value = MakeUnique<BinaryOperator>(type, std::move(value), std::move(right),
+                                       first, last);
   }
 }
 
@@ -283,7 +284,7 @@ std::unique_ptr<Value> DefaultParser::tryParsePrefix() {
   auto value = checkValue(tryParsePrefix());
 
   const auto last = lastLocation();
-  return std::make_unique<UnuaryOperator>(type, std::move(value), first, last);
+  return MakeUnique<UnuaryOperator>(type, std::move(value), first, last);
 }
 
 std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
@@ -302,8 +303,8 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
                                     : UnuaryOperator::Type::PostfixDecrement;
 
       const auto last = lastLocation();
-      value = std::make_unique<UnuaryOperator>(unuaryOpType, std::move(value),
-                                               first, last);
+      value = MakeUnique<UnuaryOperator>(unuaryOpType, std::move(value), first,
+                                         last);
     } else if (type == Token::Type::Dot) {
       consume();
 
@@ -312,8 +313,8 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
       auto identifier = read().getString();
 
       const auto last = lastLocation();
-      value = std::make_unique<DotOperator>(std::move(identifier),
-                                            std::move(value), first, last);
+      value = MakeUnique<DotOperator>(std::move(identifier), std::move(value),
+                                      first, last);
     } else if (type == Token::Type::ArrayOpen ||
                type == Token::Type::ArrayOpenGrid ||
                type == Token::Type::ArrayOpenList ||
@@ -349,9 +350,9 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
         consumeIf(Token::Type::ArrayClose);
 
         const auto last = lastLocation();
-        return std::make_unique<ArrayOperator>(type, std::move(value),
-                                               std::move(index1),
-                                               std::move(index2), first, last);
+        return MakeUnique<ArrayOperator>(type, std::move(value),
+                                         std::move(index1), std::move(index2),
+                                         first, last);
 
       } else if (type == ArrayOperator::Type::Array ||
                  type == ArrayOperator::Type::Reference) {
@@ -362,12 +363,12 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
           auto index2 = checkValue(tryParseExpression());
 
           const auto last = lastLocation();
-          arrayValue = std::make_unique<ArrayOperator>(
+          arrayValue = MakeUnique<ArrayOperator>(
               type, std::move(value), std::move(index1), std::move(index2),
               first, last);
         } else {
           const auto last = lastLocation();
-          arrayValue = std::make_unique<ArrayOperator>(
+          arrayValue = MakeUnique<ArrayOperator>(
               type, std::move(value), std::move(index1), first, last);
         }
 
@@ -377,8 +378,8 @@ std::unique_ptr<Value> DefaultParser::tryParsePostfix() {
         consumeIf(Token::Type::ArrayClose);
 
         const auto last = lastLocation();
-        return std::make_unique<ArrayOperator>(type, std::move(value),
-                                               std::move(index1), first, last);
+        return MakeUnique<ArrayOperator>(type, std::move(value),
+                                         std::move(index1), first, last);
       }
     } else
       return value;
@@ -423,24 +424,24 @@ std::unique_ptr<Value> DefaultParser::tryParseValue() {
         consume();
 
       const auto last = lastLocation();
-      return std::make_unique<FunctionCall>(token.getString(), std::move(args),
-                                            first, last);
+      return MakeUnique<FunctionCall>(token.getString(), std::move(args), first,
+                                      last);
     } else {
       const auto last = lastLocation();
-      return std::make_unique<Variable>(token.getString(), first, last);
+      return MakeUnique<Variable>(token.getString(), first, last);
     }
   } else if (type == Token::Type::ConstInt) {
     const auto token = read();
-    return std::make_unique<IntConstant>(token.getInteger(), token.first(),
-                                         token.last());
+    return MakeUnique<IntConstant>(token.getInteger(), token.first(),
+                                   token.last());
   } else if (type == Token::Type::ConstDouble) {
     const auto token = read();
-    return std::make_unique<DoubleConstant>(token.getDouble(), token.first(),
-                                            token.last());
+    return MakeUnique<DoubleConstant>(token.getDouble(), token.first(),
+                                      token.last());
   } else if (type == Token::Type::ConstString) {
     const auto token = read();
-    return std::make_unique<StringConstant>(token.getString(), token.first(),
-                                            token.last());
+    return MakeUnique<StringConstant>(token.getString(), token.first(),
+                                      token.last());
   }
 
   return {};

@@ -21,6 +21,8 @@ class DefaultLexer : public ILexer {
   void consume();
   bool eof();
 
+  Location location() const;
+  
   Token handleDot();
   Token handleHexNumber();
   Token handleIdentifier();
