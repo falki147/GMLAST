@@ -19,14 +19,14 @@
 #include <GMLAST/Parser/Parser.hpp>
 #include <GMLAST/Parser/SyntaxChecker.hpp>
 #include <GMLAST/Utils/ILogger.hpp>
-#include <GMLAST/Utils/UniquePtrHelper.hpp>
+#include <GMLAST/Utils/MemoryHelper.hpp>
 #include <cassert>
 #include <sstream>
 
 namespace GMLAST {
 
 std::unique_ptr<Base> DefaultParser::parse(std::unique_ptr<ILexer> lexer,
-                                           std::unique_ptr<ILogger> logger) {
+                                           std::shared_ptr<ILogger> logger) {
   DefaultParser parser(std::move(lexer), std::move(logger));
 
   const auto first = parser.firstLocation();
@@ -48,15 +48,20 @@ std::unique_ptr<Base> DefaultParser::parse(std::unique_ptr<ILexer> lexer,
 
   const auto last = parser.lastLocation();
   auto ast = MakeUnique<Statements>(std::move(statements), first, last);
-  SyntaxChecker::visit(*ast, parser.logger());
+  SyntaxChecker::visit(*ast, *parser.m_logger);
 
   return ast;
 }
 
 DefaultParser::DefaultParser(std::unique_ptr<ILexer> lexer,
-                             std::unique_ptr<ILogger> logger)
+                             std::shared_ptr<ILogger> logger)
     : m_lexer(std::move(lexer)), m_logger(std::move(logger)) {
   assert(m_lexer);
+
+  if (!m_logger) {
+    m_logger = m_lexer->logger();
+    assert(m_logger);
+  }
 
   m_token = m_lexer->lex();
   m_last = m_token.first();
@@ -78,7 +83,7 @@ void DefaultParser::errorExpected(const Token& token,
   else
     ss << "EOF";
 
-  logger().log(ILogger::Level::Error, ss.str(), token.first(), token.last());
+  m_logger->log(ILogger::Level::Error, ss.str(), token.first(), token.last());
 }
 
 void DefaultParser::errorUnexpected(const Token& token) {
@@ -90,11 +95,7 @@ void DefaultParser::errorUnexpected(const Token& token) {
   else
     ss << "EOF";
 
-  logger().log(ILogger::Level::Error, ss.str(), token.first(), token.last());
-}
-
-ILogger& DefaultParser::logger() {
-  return m_logger ? *m_logger : m_lexer->logger();
+  m_logger->log(ILogger::Level::Error, ss.str(), token.first(), token.last());
 }
 
 void DefaultParser::consume() {

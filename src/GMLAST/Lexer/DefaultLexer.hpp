@@ -10,11 +10,11 @@ struct ILogger;
 
 class DefaultLexer : public ILexer {
  public:
-  DefaultLexer(std::unique_ptr<IStream> stream,
-               std::unique_ptr<ILogger> logger);
+  DefaultLexer(std::shared_ptr<IStream> stream,
+               std::shared_ptr<ILogger> logger);
 
   virtual Token lex() override;
-  virtual ILogger& logger() override;
+  virtual std::shared_ptr<ILogger> logger() override;
 
  private:
   int peek();
@@ -22,7 +22,7 @@ class DefaultLexer : public ILexer {
   bool eof();
 
   Location location() const;
-  
+
   Token handleDot();
   Token handleHexNumber();
   Token handleIdentifier();
@@ -33,8 +33,8 @@ class DefaultLexer : public ILexer {
   void handleMultilineComment();
   void handleUnexpectedCharacter();
 
-  std::unique_ptr<IStream> m_stream;
-  std::unique_ptr<ILogger> m_logger;
+  std::shared_ptr<IStream> m_stream;
+  std::shared_ptr<ILogger> m_logger;
   int m_value{0};
   int m_line{0}, m_index{0}, m_lineIndex{0};
 };

@@ -5,8 +5,8 @@
 
 namespace GMLAST {
 
-DefaultLexer::DefaultLexer(std::unique_ptr<IStream> stream,
-                           std::unique_ptr<ILogger> logger)
+DefaultLexer::DefaultLexer(std::shared_ptr<IStream> stream,
+                           std::shared_ptr<ILogger> logger)
     : m_stream{std::move(stream)}, m_logger{std::move(logger)} {
   assert(m_stream && m_logger);
   m_value = m_stream->get();
@@ -232,7 +232,7 @@ Token DefaultLexer::lex() {
   }
 }
 
-ILogger& DefaultLexer::logger() { return *m_logger; }
+std::shared_ptr<ILogger> DefaultLexer::logger() { return m_logger; }
 
 int DefaultLexer::peek() { return m_value; }
 

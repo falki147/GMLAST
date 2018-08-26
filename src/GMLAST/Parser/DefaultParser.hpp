@@ -14,17 +14,15 @@ struct ILexer;
 class DefaultParser {
  public:
   static std::unique_ptr<Base> parse(std::unique_ptr<ILexer> lexer,
-                                     std::unique_ptr<ILogger> logger = {});
+                                     std::shared_ptr<ILogger> logger = {});
 
  private:
   DefaultParser(std::unique_ptr<ILexer> lexer,
-                std::unique_ptr<ILogger> logger = {});
+                std::shared_ptr<ILogger> logger = {});
 
   void errorExpected(const Token& token, Token::Type expectation);
   void errorExpected(const Token& token, const std::string& expectation);
   void errorUnexpected(const Token& token);
-
-  ILogger& logger();
 
   const Token& peek() const noexcept { return m_token; }
 
@@ -76,7 +74,7 @@ class DefaultParser {
 
   Token m_token;
   std::unique_ptr<ILexer> m_lexer;
-  std::unique_ptr<ILogger> m_logger;
+  std::shared_ptr<ILogger> m_logger;
   Location m_last;
 };
 

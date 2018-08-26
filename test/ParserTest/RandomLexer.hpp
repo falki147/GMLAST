@@ -10,7 +10,7 @@ class RandomLexer : public GMLAST::ILexer {
   RandomLexer(std::size_t numTokens, unsigned int seed = 0);
 
   virtual GMLAST::Token lex() override;
-  virtual GMLAST::ILogger& logger() override;
+  virtual std::shared_ptr<GMLAST::ILogger> logger() override;
 
  private:
   std::size_t m_numTokensLeft;

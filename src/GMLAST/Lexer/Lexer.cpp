@@ -1,8 +1,7 @@
 #include <GMLAST/Lexer/DefaultLexer.hpp>
 #include <GMLAST/Lexer/Lexer.hpp>
 #include <GMLAST/Utils/ILogger.hpp>
-#include <GMLAST/Utils/ReferenceLogger.hpp>
-#include <GMLAST/Utils/UniquePtrHelper.hpp>
+#include <GMLAST/Utils/MemoryHelper.hpp>
 
 namespace GMLAST {
 
@@ -29,51 +28,33 @@ struct StdStream : IStream {
 };
 
 std::unique_ptr<ILexer> CreateDefaultLexer(const char* cstring,
-                                           std::unique_ptr<ILogger> logger) {
-  return MakeUnique<DefaultLexer>(
-      MakeUnique<IteratorStream<const char*>>(
-          cstring, cstring + std::char_traits<char>::length(cstring)),
-      std::move(logger));
-}
+                                           std::shared_ptr<ILogger> logger) {
+  const auto length = std::char_traits<char>::length(cstring);
 
-std::unique_ptr<ILexer> CreateDefaultLexer(const std::string& string,
-                                           std::unique_ptr<ILogger> logger) {
-  return MakeUnique<DefaultLexer>(
-      MakeUnique<IteratorStream<std::string::const_iterator>>(string.cbegin(),
-                                                              string.cend()),
-      std::move(logger));
-}
+  auto stream =
+      MakeUnique<IteratorStream<const char*>>(cstring, cstring + length);
 
-std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream,
-                                           std::unique_ptr<ILogger> logger) {
-  return MakeUnique<DefaultLexer>(MakeUnique<StdStream>(istream),
-                                  std::move(logger));
-}
-
-std::unique_ptr<ILexer> CreateDefaultLexer(std::unique_ptr<IStream> stream,
-                                           std::unique_ptr<ILogger> logger) {
   return MakeUnique<DefaultLexer>(std::move(stream), std::move(logger));
 }
 
-std::unique_ptr<ILexer> CreateDefaultLexer(const char* cstring,
-                                           ILogger& logger) {
-  return CreateDefaultLexer(cstring, MakeUnique<ReferenceLogger>(logger));
-}
-
 std::unique_ptr<ILexer> CreateDefaultLexer(const std::string& string,
-                                           ILogger& logger) {
-  return CreateDefaultLexer(string, MakeUnique<ReferenceLogger>(logger));
+                                           std::shared_ptr<ILogger> logger) {
+  using StringStream = IteratorStream<std::string::const_iterator>;
+
+  return MakeUnique<DefaultLexer>(
+      MakeShared<StringStream>(string.cbegin(), string.cend()),
+      std::move(logger));
 }
 
 std::unique_ptr<ILexer> CreateDefaultLexer(std::istream& istream,
-                                           ILogger& logger) {
-  return CreateDefaultLexer(istream, MakeUnique<ReferenceLogger>(logger));
+                                           std::shared_ptr<ILogger> logger) {
+  return MakeUnique<DefaultLexer>(MakeShared<StdStream>(istream),
+                                  std::move(logger));
 }
 
-std::unique_ptr<ILexer> CreateDefaultLexer(std::unique_ptr<IStream> stream,
-                                           ILogger& logger) {
-  return CreateDefaultLexer(std::move(stream),
-                            MakeUnique<ReferenceLogger>(logger));
+std::unique_ptr<ILexer> CreateDefaultLexer(std::shared_ptr<IStream> stream,
+                                           std::shared_ptr<ILogger> logger) {
+  return MakeUnique<DefaultLexer>(std::move(stream), std::move(logger));
 }
 
 }  // namespace GMLAST

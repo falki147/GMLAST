@@ -99,7 +99,7 @@ GMLAST::Token RandomLexer::lex() {
   }
 }
 
-GMLAST::ILogger& RandomLexer::logger() {
+std::shared_ptr<GMLAST::ILogger> RandomLexer::logger() {
   throw std::runtime_error("no logger assigned");
 }
 
