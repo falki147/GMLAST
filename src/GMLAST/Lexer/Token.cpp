@@ -2,7 +2,7 @@
 
 namespace GMLAST {
 
-std::string ToString(Token::Type type) noexcept {
+std::string ToString(Token::Type type) {
   switch (type) {
     case Token::Type::ArrayClose:
       return "array close";

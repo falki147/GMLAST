@@ -149,6 +149,6 @@ class Token {
   };
 };
 
-std::string ToString(Token::Type type) noexcept;
+std::string ToString(Token::Type type);
 
 }  // namespace GMLAST
