@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GMLAST/AST/DefaultVisitor.hpp>
+#include <GMLAST/AST/IVisitor.hpp>
 
 namespace GMLAST {
 
