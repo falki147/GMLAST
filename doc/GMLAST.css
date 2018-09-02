@@ -1,0 +1,8 @@
+.dotgraph {
+  text-align: left;
+  display: inline-block;
+}
+
+.dotgraph > .caption {
+  text-align: center;
+}

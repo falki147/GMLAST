@@ -5,6 +5,7 @@ project(GMLAST LANGUAGES CXX)
 option(BUILD_TESTING "Enable testing for GMLAST" OFF)
 
 add_subdirectory(src)
+add_subdirectory(doc)
 
 if(BUILD_TESTING)
   find_package(Catch2 REQUIRED)

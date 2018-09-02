@@ -1,0 +1,23 @@
+digraph GMLAST {
+    ranksep="0.3";
+    ratio=fill;
+    nodesep="0.3";
+    edge [color="0.650 0.700 0.700"];
+    node [color="0.650 0.200 1.000", 
+          width="0.0", 
+          style=filled, 
+          height="0.0"];
+    1 [label="Input"];
+    2 [label="Lexer"];
+    3 [label="Parser"];
+    4 [label="AST"];
+    5 [label="Logger"];
+    6 [label="Logger"];
+    1 -> 2  [label=" Data/Text"];
+    2 -> 3  [label=" Tokens"];
+    3 -> 4  [label=" Create Nodes"];
+    2 -> 5  [label="Errors or Warnings", 
+             minlen="0"];
+    3 -> 6  [label="Errors or Warnings", 
+             minlen="0"];
+}
