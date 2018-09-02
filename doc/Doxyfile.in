@@ -1,16 +1,16 @@
 PROJECT_NAME          = GMLAST
 
-OUTPUT_DIRECTORY      = @DOXYGEN_OUTPUTDIR@
+OUTPUT_DIRECTORY      = "@DOXYGEN_OUTPUTDIR@"
 
-STRIP_FROM_PATH       = @DOXYGEN_BASEDIR@/doc \
-                        @DOXYGEN_BASEDIR@/include
+STRIP_FROM_PATH       = "@DOXYGEN_BASEDIR@/doc" \
+                        "@DOXYGEN_BASEDIR@/include"
 
-INPUT                 = @DOXYGEN_BASEDIR@/include \
-                        @DOXYGEN_BASEDIR@/doc
+INPUT                 = "@DOXYGEN_BASEDIR@/include" \
+                        "@DOXYGEN_BASEDIR@/doc"
 
 RECURSIVE             = YES
 
-HTML_EXTRA_STYLESHEET = @DOXYGEN_BASEDIR@/doc/GMLAST.css
+HTML_EXTRA_STYLESHEET = "@DOXYGEN_BASEDIR@/doc/GMLAST.css"
 
 GENERATE_LATEX        = NO
 
@@ -18,7 +18,7 @@ HAVE_DOT              = YES
 
 DOT_IMAGE_FORMAT      = svg
 
-DOT_PATH              = @DOXYGEN_DOT_PATH@
+DOT_PATH              = "@DOXYGEN_DOT_PATH@"
 
-DOTFILE_DIRS          = @DOXYGEN_BASEDIR@/doc
+DOTFILE_DIRS          = "@DOXYGEN_BASEDIR@/doc"
 
