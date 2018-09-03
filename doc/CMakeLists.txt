@@ -19,3 +19,5 @@ add_custom_command(OUTPUT doxygen.stamp
                    COMMAND Doxygen::doxygen Doxyfile
                    COMMAND ${CMAKE_COMMAND} -E touch doxygen.stamp
                    COMMENT "Generating GMLAST documentation" VERBATIM)
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html DESTINATION "lib/GMLAST/doc")
