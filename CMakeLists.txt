@@ -30,6 +30,5 @@ if(GMLAST_BUILD_TEST)
 
   enable_testing()
 
-  add_subdirectory(testdata)
   add_subdirectory(test)
 endif()

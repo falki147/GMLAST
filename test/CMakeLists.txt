@@ -1,3 +1,5 @@
+add_subdirectory(data)
+
 file(GLOB_RECURSE PARSERTEST_SOURCE ParserTest/*.cpp)
 
 add_executable(ParserTest ${PARSERTEST_SOURCE})
