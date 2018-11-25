@@ -21,6 +21,7 @@ if (a > b)
 	a = 1 + 2 * 3;
 ```
 Output:
+
 ![AST](https://www.preinfalk.co.at/projects/GMLAST/dot_AST.svg)
 
 ## Usage
