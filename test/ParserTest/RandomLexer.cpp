@@ -1,4 +1,5 @@
 #include <ParserTest/RandomLexer.hpp>
+#include <stdexcept>
 
 namespace ParserTest {
 
