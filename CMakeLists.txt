@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(GMLAST LANGUAGES CXX VERSION 1.0.0)
+project(GMLAST LANGUAGES CXX VERSION 1.1.0)
 
 option(GMLAST_BUILD_LIBRARY "Enable building the library" ON)
 option(GMLAST_GENERATE_DOCS "Enable generating the documentation" OFF)
