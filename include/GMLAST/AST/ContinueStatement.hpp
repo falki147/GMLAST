@@ -21,7 +21,7 @@ class ContinueStatement : public Statement {
    * input
    */
   ContinueStatement(Location first = {}, Location last = {})
-      : Statement{first, last} {}
+      : Statement{first, last, NodeType::ContinueStatement} {}
 
   /**
    * \brief Function which calls IVisitor::onContinue

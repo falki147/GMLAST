@@ -6,7 +6,7 @@ namespace GMLAST {
 IfStatement::IfStatement(std::unique_ptr<Value> expression,
                          std::unique_ptr<Statement> statement, Location first,
                          Location last)
-    : Statement{first, last},
+    : Statement{first, last, NodeType::IfStatement},
       m_expression{std::move(expression)},
       m_statement{std::move(statement)} {
   assert(m_expression && m_statement);
@@ -16,7 +16,7 @@ IfStatement::IfStatement(std::unique_ptr<Value> expression,
                          std::unique_ptr<Statement> statement,
                          std::unique_ptr<Statement> elseStatement,
                          Location first, Location last)
-    : Statement{first, last},
+    : Statement{first, last, NodeType::IfStatement},
       m_expression{std::move(expression)},
       m_statement{std::move(statement)},
       m_elseStatement{std::move(elseStatement)} {

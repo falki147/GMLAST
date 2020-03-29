@@ -8,7 +8,7 @@ ForStatement::ForStatement(std::unique_ptr<Statement> initStatement,
                            std::unique_ptr<Statement> iterationStatement,
                            std::unique_ptr<Statement> statement, Location first,
                            Location last)
-    : Statement{first, last},
+    : Statement{first, last, NodeType::ForStatement},
       m_expression{std::move(expression)},
       m_initStatement{std::move(initStatement)},
       m_iterationStatement{std::move(iterationStatement)},

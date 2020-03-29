@@ -23,7 +23,7 @@ class DoubleConstant : public Value {
    * input
    */
   DoubleConstant(double value, Location first = {}, Location last = {})
-      : Value{first, last}, m_value{value} {}
+      : Value{first, last, NodeType::DoubleConstant}, m_value{value} {}
 
   /**
    * \brief Function which calls IVisitor::onDoubleConstant

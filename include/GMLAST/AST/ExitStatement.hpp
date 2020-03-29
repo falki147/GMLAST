@@ -21,7 +21,7 @@ class ExitStatement : public Statement {
    * input
    */
   ExitStatement(Location first = {}, Location last = {})
-      : Statement{first, last} {}
+      : Statement{first, last, NodeType::ExitStatement} {}
 
   /**
    * \brief Function which calls IVisitor::onExit

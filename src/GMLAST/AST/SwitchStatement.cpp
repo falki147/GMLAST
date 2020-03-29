@@ -6,7 +6,7 @@ namespace GMLAST {
 SwitchStatement::SwitchStatement(std::unique_ptr<Value> expression,
                                  std::vector<SwitchEntry> switchEntries,
                                  Location first, Location last)
-    : Statement{first, last},
+    : Statement{first, last, NodeType::SwitchStatement},
       m_expression{std::move(expression)},
       m_switchEntries{std::move(switchEntries)} {
   assert(m_expression);

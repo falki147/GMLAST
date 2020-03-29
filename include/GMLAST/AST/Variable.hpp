@@ -25,7 +25,7 @@ class Variable : public Value {
    * input
    */
   Variable(const std::string& name, Location first = {}, Location last = {})
-      : Value{first, last}, m_name{name} {}
+      : Value{first, last, NodeType::Variable}, m_name{name} {}
 
   /**
    * \brief Function which calls IVisitor::onVariable

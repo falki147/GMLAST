@@ -6,7 +6,9 @@ namespace GMLAST {
 DotOperator::DotOperator(const std::string& name,
                          std::unique_ptr<Value> expression, Location first,
                          Location last)
-    : Value{first, last}, m_name{name}, m_expression{std::move(expression)} {
+    : Value{first, last, NodeType::DotOperator},
+      m_name{name},
+      m_expression{std::move(expression)} {
   assert(m_expression);
 }
 

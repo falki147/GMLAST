@@ -30,7 +30,9 @@ class EnumStatement : public Statement {
    */
   EnumStatement(const std::string& name, std::vector<EnumEntry> entries,
                 Location first = {}, Location last = {})
-      : Statement{first, last}, m_name{name}, m_entries{std::move(entries)} {}
+      : Statement{first, last, NodeType::EnumStatement},
+        m_name{name},
+        m_entries{std::move(entries)} {}
 
   /**
    * \brief Function which calls IVisitor::onEnumStatement

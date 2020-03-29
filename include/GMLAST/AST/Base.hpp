@@ -5,6 +5,7 @@
 #pragma once
 
 #include <GMLAST/AST/IVisitor.hpp>
+#include <GMLAST/AST/NodeType.hpp>
 #include <GMLAST/Utils/Location.hpp>
 
 namespace GMLAST {
@@ -26,8 +27,10 @@ class Base {
    * statement in the input
    * \param last %Location after the last character of the expression or
    * statement in the input
+   * \param type Type of the node
    */
-  Base(Location first, Location last) : m_first{first}, m_last{last} {}
+  Base(Location first, Location last, NodeType type = NodeType::Error)
+      : m_first{first}, m_last{last}, m_nodeType{type} {}
 
   /**
    * \brief Virtual default destructor to make class deletable
@@ -52,8 +55,14 @@ class Base {
    */
   const Location& last() const noexcept { return m_last; }
 
+  /**
+   * \brief Returns the type of the node.
+   */
+  const NodeType nodeType() const noexcept { return m_nodeType; }
+
  private:
   Location m_first, m_last;
+  NodeType m_nodeType{NodeType::Error};
 };
 
 }  // namespace GMLAST

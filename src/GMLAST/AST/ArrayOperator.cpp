@@ -6,7 +6,7 @@ namespace GMLAST {
 ArrayOperator::ArrayOperator(Type type, std::unique_ptr<Value> array,
                              std::unique_ptr<Value> index1, Location first,
                              Location last)
-    : Value{first, last},
+    : Value{first, last, NodeType::ArrayOperator},
       m_type{type},
       m_array{std::move(array)},
       m_index1{std::move(index1)} {
@@ -20,7 +20,7 @@ ArrayOperator::ArrayOperator(Type type, std::unique_ptr<Value> array,
                              std::unique_ptr<Value> index1,
                              std::unique_ptr<Value> index2, Location first,
                              Location last)
-    : Value{first, last},
+    : Value{first, last, NodeType::ArrayOperator},
       m_type{type},
       m_array{std::move(array)},
       m_index1{std::move(index1)},

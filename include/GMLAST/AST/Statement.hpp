@@ -25,8 +25,10 @@ class Statement : public Base {
    * statement in the input
    * \param last %Location after the last character of the expression or
    * statement in the input
+   * \param type Type of the node
    */
-  Statement(Location first, Location last) : Base(first, last) {}
+  Statement(Location first, Location last, NodeType type = NodeType::Error)
+      : Base(first, last, type) {}
 };
 
 }  // namespace GMLAST

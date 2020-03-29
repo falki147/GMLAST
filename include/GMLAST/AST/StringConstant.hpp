@@ -26,7 +26,7 @@ class StringConstant : public Value {
    */
   StringConstant(const std::string& value, Location first = {},
                  Location last = {})
-      : Value{first, last}, m_value{value} {}
+      : Value{first, last, NodeType::StringConstant}, m_value{value} {}
 
   /**
    * \brief Function which calls IVisitor::onStringConstant

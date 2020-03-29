@@ -7,7 +7,7 @@ namespace GMLAST {
 BinaryOperator::BinaryOperator(Type type, std::unique_ptr<Value> left,
                                std::unique_ptr<Value> right, Location first,
                                Location last)
-    : Value{first, last},
+    : Value{first, last, NodeType::BinaryOperator},
       m_type{type},
       m_left{std::move(left)},
       m_right{std::move(right)} {

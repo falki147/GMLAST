@@ -21,7 +21,7 @@ class BreakStatement : public Statement {
    * input
    */
   BreakStatement(Location first = {}, Location last = {})
-      : Statement{first, last} {}
+      : Statement{first, last, NodeType::BreakStatement} {}
 
   /**
    * \brief Function which calls IVisitor::onBreak

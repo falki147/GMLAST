@@ -31,7 +31,7 @@ class DeclarationStatement : public Statement {
    */
   DeclarationStatement(bool isGlobal, std::vector<DeclarationEntry> entries,
                        Location first = {}, Location last = {})
-      : Statement{first, last},
+      : Statement{first, last, NodeType::DeclarationStatement},
         m_isGlobal{isGlobal},
         m_entries{std::move(entries)} {}
 

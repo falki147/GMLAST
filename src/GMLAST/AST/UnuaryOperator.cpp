@@ -5,7 +5,9 @@ namespace GMLAST {
 
 UnuaryOperator::UnuaryOperator(Type type, std::unique_ptr<Value> value,
                                Location first, Location last)
-    : Value{first, last}, m_type{type}, m_value{std::move(value)} {
+    : Value{first, last, NodeType::UnuaryOperator},
+      m_type{type},
+      m_value{std::move(value)} {
   assert(m_value);
 }
 

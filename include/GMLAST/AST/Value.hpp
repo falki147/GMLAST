@@ -25,8 +25,10 @@ class Value : public Statement {
    * input
    * \param last %Location after the last character of the expression in the
    * input
+   * \param type Type of the node
    */
-  Value(Location first, Location last) : Statement(first, last) {}
+  Value(Location first, Location last, NodeType type = NodeType::Error)
+      : Statement(first, last, type) {}
 };
 
 }  // namespace GMLAST
