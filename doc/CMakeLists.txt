@@ -15,7 +15,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
 add_custom_target(Doc ALL DEPENDS doxygen.stamp)
 
 add_custom_command(OUTPUT doxygen.stamp
-                   DEPENDS Doxyfile
+                   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
                    COMMAND Doxygen::doxygen ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
                    COMMAND ${CMAKE_COMMAND} -E touch doxygen.stamp
                    COMMENT "Generating GMLAST documentation" VERBATIM)
