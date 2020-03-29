@@ -2,6 +2,7 @@
 #include <GMLAST/Utils/ILogger.hpp>
 #include <GMLAST/Utils/IStream.hpp>
 #include <cassert>
+#include <stdexcept>
 
 namespace GMLAST {
 
