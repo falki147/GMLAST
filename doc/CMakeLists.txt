@@ -16,11 +16,15 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
 
 add_custom_target(Doc ALL DEPENDS doxygen.stamp)
 
-add_custom_command(OUTPUT doxygen.stamp
-                   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-                   COMMAND Doxygen::doxygen ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-                   COMMAND ${CMAKE_COMMAND} -E touch doxygen.stamp
-                   COMMENT "Generating GMLAST documentation" VERBATIM)
+file(GLOB_RECURSE DOXYGEN_SOURCE ${GMLAST_BASE}/include/*.hpp)
 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html DESTINATION
-                  ${GMLAST_INSTALL_PREFIX}/doc)
+add_custom_command(
+  OUTPUT doxygen.stamp
+  DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile ${DOXYGEN_SOURCE}
+  COMMAND Doxygen::doxygen ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+  COMMAND ${CMAKE_COMMAND} -E touch doxygen.stamp
+  COMMENT "Generating GMLAST documentation"
+  VERBATIM)
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html
+        DESTINATION ${GMLAST_INSTALL_PREFIX}/doc)

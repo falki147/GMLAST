@@ -24,3 +24,4 @@ DOT_PATH              = "@DOXYGEN_DOT_PATH@"
 
 DOTFILE_DIRS          = "@DOXYGEN_BASEDIR@/doc"
 
+FILE_PATTERNS         = *.hpp *.h
