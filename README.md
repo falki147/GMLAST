@@ -42,7 +42,15 @@ auto ast = ParseDefault(CreateDefaultLexer(code,
 ```
 
 ## Building
-For building this project CMake is required.
+For building this project CMake and a C++11 compiler is required. For using the
+library in your project, you can either embed the project via `add_subdirectory`
+or install it via CMake and then use `find_package`. In both cases the library
+target is `GMLAST`.
+
+By default only the library is built. You can enable tests by setting
+`BUILD_TESTING` to `ON`. This requires additional dependencies `Catch2` and
+`nlohmann_json`.  You can also enable documentation generation by setting
+`GMLAST_GENERATE_DOCS` to `ON`.  This requires Doxygen to be installed.
 
 ## Example
 See [online editor](https://www.preinfalk.co.at/projects/GMLAST/example/)
