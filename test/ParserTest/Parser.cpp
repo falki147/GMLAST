@@ -86,6 +86,34 @@ TEST_CASE("Random Scripts", "[DefaultParser]") {
           GMLAST::ParseDefault(MakeUnique<ParserTest::RandomLexer>(
                                    100, static_cast<unsigned int>(seed)),
                                MakeUnique<NullLogger>()));
+
+      CHECK_NOTHROW(GMLAST::ParseExpressionDefault(
+          MakeUnique<ParserTest::RandomLexer>(100,
+                                              static_cast<unsigned int>(seed)),
+          MakeUnique<NullLogger>()));
     }
   }
+}
+
+TEST_CASE("Expression", "[DefaultParser]") {
+  CHECK_NOTHROW(GMLAST::ParseExpressionDefault(
+      GMLAST::CreateDefaultLexer("1 + 2", MakeUnique<ExceptionLogger>())));
+
+  CHECK_NOTHROW(GMLAST::ParseExpressionDefault(
+      GMLAST::CreateDefaultLexer("a - 2", MakeUnique<ExceptionLogger>())));
+
+  CHECK_NOTHROW(GMLAST::ParseExpressionDefault(
+      GMLAST::CreateDefaultLexer("sin(a, 3)", MakeUnique<ExceptionLogger>())));
+
+  CHECK_NOTHROW(GMLAST::ParseExpressionDefault(GMLAST::CreateDefaultLexer(
+      "sin(a/* foobar */, 3)", MakeUnique<ExceptionLogger>())));
+
+  CHECK_THROWS(GMLAST::ParseExpressionDefault(
+      GMLAST::CreateDefaultLexer("", MakeUnique<ExceptionLogger>())));
+
+  CHECK_THROWS(GMLAST::ParseExpressionDefault(
+      GMLAST::CreateDefaultLexer(";a", MakeUnique<ExceptionLogger>())));
+
+  CHECK_THROWS(GMLAST::ParseExpressionDefault(
+      GMLAST::CreateDefaultLexer("1 + 2 a", MakeUnique<ExceptionLogger>())));
 }

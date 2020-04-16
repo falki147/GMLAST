@@ -53,6 +53,34 @@ std::unique_ptr<Base> DefaultParser::parse(std::unique_ptr<ILexer> lexer,
   return ast;
 }
 
+std::unique_ptr<Base> DefaultParser::parseExpression(
+    std::unique_ptr<ILexer> lexer, std::shared_ptr<ILogger> logger) {
+  DefaultParser parser(std::move(lexer), std::move(logger));
+
+  for (;;) {
+    auto expression = parser.tryParseExpression(true);
+
+    if (!expression) {
+      parser.errorExpected(parser.peek(), "expression");
+
+      if (parser.peek()) {
+        parser.consume();
+        // Retry expression parsing
+        continue;
+      }
+
+      return MakeUnique<Error>();
+    } else {
+      if (parser.peek()) {
+        parser.errorUnexpected(parser.peek());
+      }
+
+      SyntaxChecker::visitExpression(*expression, *parser.m_logger);
+      return expression;
+    }
+  }
+}
+
 DefaultParser::DefaultParser(std::unique_ptr<ILexer> lexer,
                              std::shared_ptr<ILogger> logger)
     : m_lexer(std::move(lexer)), m_logger(std::move(logger)) {

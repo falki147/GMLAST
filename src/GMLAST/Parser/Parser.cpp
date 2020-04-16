@@ -12,4 +12,9 @@ std::unique_ptr<Base> ParseDefault(std::unique_ptr<ILexer> lexer,
   return DefaultParser::parse(std::move(lexer), std::move(logger));
 }
 
+std::unique_ptr<Base> ParseExpressionDefault(std::unique_ptr<ILexer> lexer,
+                                             std::shared_ptr<ILogger> logger) {
+  return DefaultParser::parseExpression(std::move(lexer), std::move(logger));
+}
+
 }  // namespace GMLAST

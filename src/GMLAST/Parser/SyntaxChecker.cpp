@@ -31,6 +31,11 @@ void SyntaxChecker::visit(const Base& base, ILogger& logger) {
   base.visit(visitor);
 }
 
+void SyntaxChecker::visitExpression(const Base& base, ILogger& logger) {
+  SyntaxChecker visitor(logger);
+  visitor.visitSubExpression(base);
+}
+
 void SyntaxChecker::logNotTopLevel(const Base& base) {
   m_logger.log(ILogger::Level::Error,
                "expression is not a top level expression", base.first(),

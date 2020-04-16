@@ -11,6 +11,8 @@ class SyntaxChecker : IVisitor {
  public:
   static void visit(const Base& base, ILogger& logger);
 
+  static void visitExpression(const Base& base, ILogger& logger);
+
  private:
   SyntaxChecker(ILogger& logger) : m_logger{logger} {}
 

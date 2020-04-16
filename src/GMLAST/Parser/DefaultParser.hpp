@@ -16,6 +16,9 @@ class DefaultParser {
   static std::unique_ptr<Base> parse(std::unique_ptr<ILexer> lexer,
                                      std::shared_ptr<ILogger> logger = {});
 
+  static std::unique_ptr<Base> parseExpression(
+      std::unique_ptr<ILexer> lexer, std::shared_ptr<ILogger> logger = {});
+
  private:
   DefaultParser(std::unique_ptr<ILexer> lexer,
                 std::shared_ptr<ILogger> logger = {});
