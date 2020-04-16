@@ -1,4 +1,3 @@
-#define CATCH_CONFIG_MAIN
 #include <GMLAST/AST/ArrayOperator.hpp>
 #include <GMLAST/AST/AssignStatement.hpp>
 #include <GMLAST/AST/BinaryOperator.hpp>
